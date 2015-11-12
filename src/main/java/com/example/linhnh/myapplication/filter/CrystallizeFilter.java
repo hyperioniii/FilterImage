@@ -16,7 +16,7 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * A filter which applies a crystallizing effect to an image, by producing Voronoi cells filled with colours from the image.

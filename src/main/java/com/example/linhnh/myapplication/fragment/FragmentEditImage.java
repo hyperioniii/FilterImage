@@ -22,6 +22,7 @@ import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.constant.HeaderIconOption;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
 import com.example.linhnh.myapplication.util.DebugLog;
+import com.example.linhnh.myapplication.util.FragmentUtil;
 import com.example.linhnh.view.ProgessSlideIndicator;
 import com.larswerkman.lobsterpicker.OnColorListener;
 import com.larswerkman.lobsterpicker.adapters.BitmapColorAdapter;
@@ -80,7 +81,7 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
     @Override
     protected void initView(View root) {
 
-        MainScreenSettingEvent mainScreenSettingEvent = new MainScreenSettingEvent("My title ", HeaderIconOption.RIGHT_CLOSE, HeaderIconOption.LEFT_BACK);
+        MainScreenSettingEvent mainScreenSettingEvent = new MainScreenSettingEvent("My title ", HeaderIconOption.RIGHT_EDIT, HeaderIconOption.LEFT_BACK);
         EventBus.getDefault().post(mainScreenSettingEvent);
         shadeSlider.addDecorator(opacitySlider);
         fabSave.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +171,7 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
 
     @Override
     public void onHeaderEdit() {
-
+        FragmentUtil.pushFragment(getActivity(), FragmentFilterImg.newIntance() ,null);
     }
 
     @Override

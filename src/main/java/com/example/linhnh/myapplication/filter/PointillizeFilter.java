@@ -16,8 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
 
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 public class PointillizeFilter extends CellularFilter {
 
@@ -74,7 +74,7 @@ public class PointillizeFilter extends CellularFilter {
 
 		float f1 = results[0].distance;
 		int srcx = ImageMath.clamp((int)((results[0].x-1000)*scale), 0, width-1);
-		int srcy = ImageMath.clamp((int)((results[0].y-1000)*scale), 0, height-1);
+		int srcy = ImageMath.clamp((int) ((results[0].y - 1000) * scale), 0, height - 1);
 		int v = inPixels[srcy * width + srcx];
 
 		if (fadeEdges) {

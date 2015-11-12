@@ -33,8 +33,8 @@ public class FilterViewHolder extends OnClickViewHolder {
         super(itemView);
     }
 
-    public void setimg(int R){
-        Glide.with(BaseApplication.getInstance()).load(R).into(ImgFilter);
+    public void setimg(){
+        Glide.with(BaseApplication.getInstance()).load(R.drawable.sc000_avatar_a).into(ImgFilter);
     }
 
     @OnClick(R.id.item_filter)

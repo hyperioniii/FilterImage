@@ -16,8 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * A filter which performs a threshold operation on an image.

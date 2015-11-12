@@ -16,9 +16,10 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
 
 import android.graphics.Rect;
+
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * A filter which allows levels adjustment on an image.
@@ -80,7 +81,7 @@ public class LevelsFilter extends WholeImageFilter {
                 high++;
 			for (i = 0; i < 3; i++) {
 				for (j = 0; j < 256; j++)
-					lut[i][j] = PixelUtils.clamp( (int)(255 * (lowOutputLevel + (highOutputLevel-lowOutputLevel) * (j-low)/(high-low))) );
+					lut[i][j] = PixelUtils.clamp((int) (255 * (lowOutputLevel + (highOutputLevel - lowOutputLevel) * (j - low) / (high - low))));
 			}
 		} else
 			lut = null;

@@ -19,7 +19,7 @@ package com.example.linhnh.myapplication.filter;
 import android.graphics.Point;
 import android.graphics.Rect;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * A filter which rotates an image. These days this is easier done with Java2D, but this filter remains.

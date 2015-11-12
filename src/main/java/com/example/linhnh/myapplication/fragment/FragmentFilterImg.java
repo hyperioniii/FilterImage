@@ -10,7 +10,10 @@ import com.example.linhnh.myapplication.R;
  */
 public class FragmentFilterImg extends BaseFragment {
 
-
+   public static FragmentFilterImg newIntance(){
+       FragmentFilterImg fm = new FragmentFilterImg();
+       return  fm ;
+   }
 
     @Override
     protected int setLayoutId() {

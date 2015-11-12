@@ -17,9 +17,8 @@ limitations under the License.
 package com.example.linhnh.myapplication.filter;
 
 import java.util.*;
-import java.awt.*;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 import android.graphics.Rect;
 

@@ -16,7 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 public class WeaveFilter extends PointFilter {
 
@@ -110,7 +111,7 @@ public class WeaveFilter extends PointFilter {
 		x += xWidth+xGap/2;
 		y += yWidth+yGap/2;
 		float nx = ImageMath.mod(x, xWidth+xGap);
-		float ny = ImageMath.mod(y, yWidth+yGap);
+		float ny = ImageMath.mod(y, yWidth + yGap);
 		int ix = (int)(x / (xWidth+xGap));
 		int iy = (int)(y / (yWidth+yGap));
 		boolean inX = nx < xWidth;

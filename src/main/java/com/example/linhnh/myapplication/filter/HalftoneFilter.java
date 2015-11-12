@@ -18,8 +18,8 @@ package com.example.linhnh.myapplication.filter;
 
 import java.util.*;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * A filter which uses a another image as a ask to produce a halftoning effect.

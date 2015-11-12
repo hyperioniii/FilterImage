@@ -21,8 +21,8 @@ import java.io.*;
 
 import android.graphics.Color;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * A Colormap implemented using Catmull-Rom colour splines. The map has a variable number

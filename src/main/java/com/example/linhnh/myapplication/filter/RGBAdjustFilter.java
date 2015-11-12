@@ -16,7 +16,7 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 public class RGBAdjustFilter extends PointFilter {
 	

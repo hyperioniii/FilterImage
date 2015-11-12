@@ -16,7 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * A filter which performs a box blur on an image. The horizontal and vertical blurs can be specified separately
@@ -74,7 +75,7 @@ public class BoxBlurFilter {
         inPixels = src;
 
         if ( premultiplyAlpha )
-			ImageMath.premultiply( inPixels, 0, inPixels.length );
+			ImageMath.premultiply(inPixels, 0, inPixels.length);
 		for (int i = 0; i < iterations; i++ ) {
             blur( inPixels, outPixels, width, height, hRadius );
             blur( outPixels, inPixels, height, width, vRadius );

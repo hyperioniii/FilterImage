@@ -16,8 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
 
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 public abstract class TransferFilter extends PointFilter {
 
@@ -54,7 +54,7 @@ public abstract class TransferFilter extends PointFilter {
 	protected int[] makeTable() {
 		int[] table = new int[256];
 		for (int i = 0; i < 256; i++)
-			table[i] = PixelUtils.clamp( (int)( 255 * transferFunction( i / 255.0f ) ) );
+			table[i] = PixelUtils.clamp((int) (255 * transferFunction(i / 255.0f)));
 		return table;
 	}
 

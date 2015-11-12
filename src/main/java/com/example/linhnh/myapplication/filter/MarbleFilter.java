@@ -16,9 +16,9 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
-import com.jabistudio.androidjhlabs.filter.math.Noise;
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.math.Noise;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * This filter applies a marbling effect to an image, displacing pixels by random amounts.
@@ -122,7 +122,7 @@ public class MarbleFilter extends TransformFilter {
 	}
 
 	private int displacementMap(int x, int y) {
-		return PixelUtils.clamp((int)(127 * (1+Noise.noise2(x / xScale, y / xScale))));
+		return PixelUtils.clamp((int) (127 * (1 + Noise.noise2(x / xScale, y / xScale))));
 	}
 	
 	protected void transformInverse(int x, int y, float[] out) {

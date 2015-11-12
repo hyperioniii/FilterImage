@@ -16,9 +16,10 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
 
 import android.graphics.Rect;
+
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 
 /**

@@ -16,11 +16,7 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import java.awt.*;
-
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
-
-import android.util.Log;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * A Filter to pixellate images.
@@ -74,7 +70,7 @@ public class BlockFilter{
                 int w = Math.min( blockSize, width-x );
                 int h = Math.min( blockSize, height-y );
                 int t = w*h;
-                PixelUtils.getRGB( src, x, y, w, h, width , pixels );
+                PixelUtils.getRGB(src, x, y, w, h, width, pixels);
                 int r = 0, g = 0, b = 0;
                 int argb;
                 int i = 0;

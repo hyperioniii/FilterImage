@@ -16,7 +16,7 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * This filter diffuses an image by moving its pixels in random directions.

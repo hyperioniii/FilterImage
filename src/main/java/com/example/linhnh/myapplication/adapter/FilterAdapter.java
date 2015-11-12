@@ -17,11 +17,11 @@ public class FilterAdapter extends AdapterWithItemClick<FilterViewHolder> {
 
     @Override
     public void onBindViewHolder(FilterViewHolder holder, int position) {
-
+        holder.setimg();
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 10;
     }
 }

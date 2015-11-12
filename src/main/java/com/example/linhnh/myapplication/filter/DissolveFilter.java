@@ -18,7 +18,7 @@ package com.example.linhnh.myapplication.filter;
 
 import java.util.*;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * A filter which "dissolves" an image by thresholding the alpha channel with random numbers.

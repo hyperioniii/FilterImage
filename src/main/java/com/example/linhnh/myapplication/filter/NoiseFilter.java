@@ -16,9 +16,10 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
+
 import java.util.*;
 
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
 
 /**
  * A filter which adds random noise into an image.
@@ -137,7 +138,7 @@ public class NoiseFilter extends PointFilter {
 				int n = (int)(((distribution == GAUSSIAN ? randomNumbers.nextGaussian() : 2*randomNumbers.nextFloat() - 1)) * amount);
 				r = PixelUtils.clamp(r+n);
 				g = PixelUtils.clamp(g+n);
-				b = PixelUtils.clamp(b+n);
+				b = PixelUtils.clamp(b + n);
 			} else {
 				r = random(r);
 				g = random(g);

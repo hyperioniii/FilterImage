@@ -16,8 +16,9 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * A filter which applies a convolution kernel to an image.
@@ -174,7 +175,7 @@ public class ConvolveFilter{
         inPixels = src;
 
         if ( premultiplyAlpha )
-			ImageMath.premultiply( inPixels, 0, inPixels.length );
+			ImageMath.premultiply(inPixels, 0, inPixels.length);
         
 		convolve(kernel, inPixels, outPixels, width, height, alpha, edgeAction);
 		
@@ -274,7 +275,7 @@ public class ConvolveFilter{
 					}
 				}
 				int ia = alpha ? PixelUtils.clamp((int)(a+0.5)) : 0xff;
-				int ir = PixelUtils.clamp((int)(r+0.5));
+				int ir = PixelUtils.clamp((int) (r + 0.5));
 				int ig = PixelUtils.clamp((int)(g+0.5));
 				int ib = PixelUtils.clamp((int)(b+0.5));
 				outPixels[index++] = (ia << 24) | (ir << 16) | (ig << 8) | ib;

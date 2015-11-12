@@ -16,9 +16,9 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
-
 import android.graphics.Rect;
+
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 
 /**
@@ -44,7 +44,7 @@ public class MaximumFilter extends WholeImageFilter {
 						for (int dx = -1; dx <= 1; dx++) {
 							int ix = x+dx;
 							if (0 <= ix && ix < width) {
-								pixel = PixelUtils.combinePixels(pixel, inPixels[ioffset+ix], PixelUtils.MAX);
+								pixel = PixelUtils.combinePixels(pixel, inPixels[ioffset + ix], PixelUtils.MAX);
 							}
 						}
 					}

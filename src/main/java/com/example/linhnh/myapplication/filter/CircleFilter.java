@@ -16,7 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * A filter which wraps an image around a circular arc.
@@ -191,7 +192,7 @@ public class CircleFilter extends TransformFilter {
 		float theta = (float)Math.atan2( -dy, -dx ) + angle;
 		float r = (float)Math.sqrt( dx*dx + dy*dy );
 
-		theta = ImageMath.mod( theta, 2*(float)Math.PI );
+		theta = ImageMath.mod(theta, 2 * (float) Math.PI);
 
 		out[0] = iWidth * theta/(spreadAngle+0.00001f);
 		out[1] = iHeight * (1-(r-radius)/(height+0.00001f));

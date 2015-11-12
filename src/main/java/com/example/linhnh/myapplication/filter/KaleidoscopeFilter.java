@@ -16,7 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * A Filter which produces the effect of looking into a kaleidoscope.
@@ -185,7 +186,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 		double dy = y-icentreY;
 		double r = Math.sqrt( dx*dx + dy*dy );
 		double theta = Math.atan2( dy, dx ) - angle - angle2;
-		theta = ImageMath.triangle( (float)( theta/Math.PI*sides*.5 ) );
+		theta = ImageMath.triangle((float) (theta / Math.PI * sides * .5));
 		if ( radius != 0 ) {
 			double c = Math.cos(theta);
 			double radiusc = radius/c;

@@ -16,7 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * A Filter to pixellate images.
@@ -149,7 +150,7 @@ public class ColorHalftoneFilter {
                         float nty = ttx*sin + tty*cos;
                         // Clamp to the image
                         int nx = ImageMath.clamp( (int)ntx, 0, width-1 );
-                        int ny = ImageMath.clamp( (int)nty, 0, height-1 );
+                        int ny = ImageMath.clamp((int) nty, 0, height - 1);
                         int argb = inPixels[ny*width+nx];
                         int nr = (argb >> shift) & 0xff;
                         float l = nr/255.0f;

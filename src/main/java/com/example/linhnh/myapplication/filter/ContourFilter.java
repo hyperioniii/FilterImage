@@ -18,7 +18,8 @@ package com.example.linhnh.myapplication.filter;
 
 import android.graphics.Rect;
 
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
+
 
 /**
  * A filter which draws contours on an image at given brightness levels.
@@ -126,7 +127,7 @@ public class ContourFilter extends WholeImageFilter {
                 }
 
                 if ( v != 0 )
-                    outPixels[index] = PixelUtils.combinePixels( inPixels[index], contourColor, PixelUtils.NORMAL, v );
+                    outPixels[index] = PixelUtils.combinePixels(inPixels[index], contourColor, PixelUtils.NORMAL, v);
 //                  outPixels[index] = PixelUtils.combinePixels( (contourColor & 0xff)|(v << 24), inPixels[index], PixelUtils.NORMAL );
                 else
                     outPixels[index] = inPixels[index];

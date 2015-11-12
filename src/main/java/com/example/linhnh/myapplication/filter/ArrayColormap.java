@@ -16,7 +16,8 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
 
 /**
  * A colormap implemented with an array of colors. This corresponds to the IndexColorModel class.
@@ -110,7 +111,7 @@ public class ArrayColormap implements Colormap, Cloneable {
 		int firstColor = map[firstIndex];
 		int lastColor = map[lastIndex];
 		for (int i = firstIndex; i <= index; i++)
-			map[i] = ImageMath.mixColors((float)(i-firstIndex)/(index-firstIndex), firstColor, color);
+			map[i] = ImageMath.mixColors((float) (i - firstIndex) / (index - firstIndex), firstColor, color);
 		for (int i = index; i < lastIndex; i++)
 			map[i] = ImageMath.mixColors((float)(i-index)/(lastIndex-index), color, lastColor);
 	}

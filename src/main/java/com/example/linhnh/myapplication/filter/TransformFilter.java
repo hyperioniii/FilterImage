@@ -16,11 +16,12 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
 
 import android.graphics.Rect;
 import android.util.Log;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * An abstract superclass for filters which distort images in some way. The subclass only needs to override

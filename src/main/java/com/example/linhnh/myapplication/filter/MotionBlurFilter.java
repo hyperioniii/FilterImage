@@ -16,12 +16,13 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.util.Log;
+
+import com.example.linhnh.myapplication.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * A filter which produces motion blur the slow, but higher-quality way.
@@ -223,7 +224,7 @@ public class MotionBlurFilter {
 					}
 					if (newY < 0 || newY >= height) {
 						if ( wrapEdges )
-							newY = ImageMath.mod( newY, height );
+							newY = ImageMath.mod(newY, height);
 						else
 							break;
 					}
@@ -238,7 +239,7 @@ public class MotionBlurFilter {
 				if (count == 0) {
 					outPixels[index] = inPixels[index];
 				} else {
-					a = PixelUtils.clamp((int)(a/count));
+					a = PixelUtils.clamp((int) (a / count));
 					r = PixelUtils.clamp((int)(r/count));
 					g = PixelUtils.clamp((int)(g/count));
 					b = PixelUtils.clamp((int)(b/count));

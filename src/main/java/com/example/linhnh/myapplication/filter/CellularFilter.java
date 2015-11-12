@@ -16,15 +16,14 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import java.awt.*;
 import java.util.*;
 
 import android.graphics.Rect;
 
-import com.jabistudio.androidjhlabs.filter.math.Function2D;
-import com.jabistudio.androidjhlabs.filter.math.ImageMath;
-import com.jabistudio.androidjhlabs.filter.math.Noise;
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
+import com.example.linhnh.myapplication.filter.math.Function2D;
+import com.example.linhnh.myapplication.filter.math.ImageMath;
+import com.example.linhnh.myapplication.filter.math.Noise;
+import com.example.linhnh.myapplication.filter.util.PixelUtils;
 
 /**
  * A filter which produces an image with a cellular texture.
@@ -349,7 +348,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 				}
 				if (randomness != 0) {
 					px += randomness * Noise.noise2(271*(cubeX+px), 271*(cubeY+py));
-					py += randomness * Noise.noise2(271*(cubeX+px)+89, 271*(cubeY+py)+137);
+					py += randomness * Noise.noise2(271 * (cubeX + px) + 89, 271 * (cubeY + py) + 137);
 				}
 				break;
 			case TRIANGULAR:
@@ -496,7 +495,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 			}
 			return v;
 		} else {
-			v = PixelUtils.clamp((int)(f*255));
+			v = PixelUtils.clamp((int) (f * 255));
 			int r = v << 16;
 			int g = v << 8;
 			int b = v;

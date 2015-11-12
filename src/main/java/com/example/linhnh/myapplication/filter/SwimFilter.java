@@ -16,7 +16,7 @@ limitations under the License.
 
 package com.example.linhnh.myapplication.filter;
 
-import com.jabistudio.androidjhlabs.filter.math.Noise;
+import com.example.linhnh.myapplication.filter.math.Noise;
 
 /**
  * A filter which distorts an image as if it were underwater.

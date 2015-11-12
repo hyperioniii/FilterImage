@@ -19,7 +19,6 @@ package com.example.linhnh.myapplication.filter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import com.jabistudio.androidjhlabs.filter.util.PixelUtils;
 
 /**
  * A filter which crops an image to a given rectangle.
