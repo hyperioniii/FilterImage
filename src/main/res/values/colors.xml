@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="primary">#52daae</color>
+    <color name="primaryDark">#3e4f5f</color>
+    <color name="toggleDrawer">#ff025f8a</color>
+    <color name="primaryText">#000000</color>
+    <color name="primaryTextLight">#ffffff</color>
+
+    <color name="base_green">#95c327</color>
+    <color name="dark_green">#87b426</color>
+    <color name="base_gray">#ebecef</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="txt_gray">#a3a3a3</color>
+    <color name="txt_red">#e53935</color>
+    <color name="line_gray">#d6d6d6</color>
+    <color name="underton_gray">#eeeeee</color>
+    <color name="super_dark_gray">#313131</color>
+
+    <color name="dialog_fading">#cc000000</color>
+    <color name="young_cyan">#52daae</color>
+    <color name="young_cyan_1">#c84dbf93</color>
+    <color name="old_blue">#3e4f5f</color>
+    <color name="old_blue_1">#364858</color>
+    <color name="hope_green">#8fc31f</color>
+    <color name="red_light">#E04343</color>
+    <color name="red_light_">#d63f3f</color>
+    <color name="old_blue_2">#4f6070</color>
+    <color name="old_blue_3">#3d4955</color>
+    <color name="grey_light">#dadada</color>
+</resources>
