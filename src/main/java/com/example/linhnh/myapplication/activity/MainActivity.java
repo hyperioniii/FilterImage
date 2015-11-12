@@ -25,6 +25,12 @@ public class MainActivity extends BaseActivity implements OnHeaderIconClickListe
 
     boolean isNextBackPopAllStack = false;
 
+    OnHeaderIconClickListener onHeaderIconClickListener;
+
+    public void setOnHeaderIconClickListener(OnHeaderIconClickListener onHeaderIconClickListener) {
+        this.onHeaderIconClickListener = onHeaderIconClickListener;
+    }
+
     @Override
     public int setContentViewId() {
         return R.layout.activity_main;
@@ -96,26 +102,31 @@ public class MainActivity extends BaseActivity implements OnHeaderIconClickListe
             finish();
         }
         DebugLog.i("imgLeftBack:");
+        onHeaderIconClickListener.onHeaderBack();
     }
 
     @Override
     public void onHeaderClose() {
         DebugLog.i("onHeaderClose:");
+        onHeaderIconClickListener.onHeaderClose();
     }
 
     @Override
     public void onHeaderSetting() {
         DebugLog.i("onHeaderSetting:");
+        onHeaderIconClickListener.onHeaderSetting();
     }
 
     @Override
     public void onHeaderEdit() {
         DebugLog.i("onHeaderEdit:");
+        onHeaderIconClickListener.onHeaderEdit();
     }
 
     @Override
     public void onHeaderDelete() {
         DebugLog.i("onHeaderDelete:");
+        onHeaderIconClickListener.onHeaderDelete();
     }
 
     @Override
