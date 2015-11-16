@@ -1,16 +1,11 @@
 package com.example.linhnh.myapplication.activity;
 
-import android.content.res.ColorStateList;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.example.linhnh.myapplication.CustomView.CustomHeaderToolBar;
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
-import com.example.linhnh.myapplication.fragment.FragmentEditImage;
 import com.example.linhnh.myapplication.fragment.FragmentListImage;
 import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.FragmentUtil;
@@ -21,15 +16,9 @@ import butterknife.InjectView;
 public class MainActivity extends BaseActivity implements OnHeaderIconClickListener ,FragmentManager.OnBackStackChangedListener{
 
     @InjectView(R.id.toolbar)
-    CustomHeaderToolBar toolBar;
+    public CustomHeaderToolBar toolBar;
 
     boolean isNextBackPopAllStack = false;
-
-    OnHeaderIconClickListener onHeaderIconClickListener;
-
-    public void setOnHeaderIconClickListener(OnHeaderIconClickListener onHeaderIconClickListener) {
-        this.onHeaderIconClickListener = onHeaderIconClickListener;
-    }
 
     @Override
     public int setContentViewId() {
@@ -102,31 +91,26 @@ public class MainActivity extends BaseActivity implements OnHeaderIconClickListe
             finish();
         }
         DebugLog.i("imgLeftBack:");
-        onHeaderIconClickListener.onHeaderBack();
     }
 
     @Override
     public void onHeaderClose() {
         DebugLog.i("onHeaderClose:");
-        onHeaderIconClickListener.onHeaderClose();
     }
 
     @Override
     public void onHeaderSetting() {
         DebugLog.i("onHeaderSetting:");
-        onHeaderIconClickListener.onHeaderSetting();
     }
 
     @Override
     public void onHeaderEdit() {
         DebugLog.i("onHeaderEdit:");
-        onHeaderIconClickListener.onHeaderEdit();
     }
 
     @Override
     public void onHeaderDelete() {
         DebugLog.i("onHeaderDelete:");
-        onHeaderIconClickListener.onHeaderDelete();
     }
 
     @Override

@@ -19,6 +19,10 @@ public class FilterViewHolder extends OnClickViewHolder {
 
     OnRecyclerViewItemClick onRecyclerViewItemClick;
 
+    public FilterViewHolder(View itemView) {
+        super(itemView);
+    }
+
     @Override
     public void setOnRecyclerViewItemClick(OnRecyclerViewItemClick onRecyclerViewItemClick) {
         this.onRecyclerViewItemClick = onRecyclerViewItemClick;
@@ -29,12 +33,9 @@ public class FilterViewHolder extends OnClickViewHolder {
     @InjectView(R.id.item_filter)
     ImageView ImgFilter;
 
-    public FilterViewHolder(View itemView) {
-        super(itemView);
-    }
 
-    public void setimg(){
-        Glide.with(BaseApplication.getInstance()).load(R.drawable.sc000_avatar_a).into(ImgFilter);
+    public void setimg(int i){
+        Glide.with(BaseApplication.getInstance()).load(i).centerCrop().into(ImgFilter);
     }
 
     @OnClick(R.id.item_filter)

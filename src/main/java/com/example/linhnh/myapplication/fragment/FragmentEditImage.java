@@ -2,6 +2,7 @@ package com.example.linhnh.myapplication.fragment;
 
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -18,9 +19,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.linhnh.myapplication.R;
+import com.example.linhnh.myapplication.activity.MainActivity;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.constant.HeaderIconOption;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
+import com.example.linhnh.myapplication.filter.base.ApplyFilter;
 import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.FragmentUtil;
 import com.example.linhnh.view.ProgessSlideIndicator;
@@ -37,6 +40,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -68,6 +72,13 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
     @InjectView(R.id.progressIndicator)
     ProgessSlideIndicator progressIndicator;
 
+    @InjectView(R.id.filter_R)
+    ImageView imgFilterR;
+    @InjectView(R.id.filter_B)
+    ImageView imgFilterB;
+    @InjectView(R.id.filter_G)
+    ImageView imgFilterG;
+
     public static FragmentEditImage intantce() {
         FragmentEditImage fm = new FragmentEditImage();
         return fm;
@@ -80,7 +91,7 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
 
     @Override
     protected void initView(View root) {
-
+        ((MainActivity) getActivity()).toolBar.setOnHeaderIconClickListener(this);
         MainScreenSettingEvent mainScreenSettingEvent = new MainScreenSettingEvent("My title ", HeaderIconOption.RIGHT_EDIT, HeaderIconOption.LEFT_BACK);
         EventBus.getDefault().post(mainScreenSettingEvent);
         shadeSlider.addDecorator(opacitySlider);
@@ -93,8 +104,8 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
             }
         });
 
-        fabSave.setRippleColor(getResources().getColor(R.color.colorPrimary));
-        fabSave.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
+//        fabSave.setRippleColor(getResources().getColor(R.color.colorPrimary));
+//        fabSave.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
     }
 
     @Override
@@ -112,18 +123,20 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
     Canvas canvas;
     Paint paint = new Paint();
     Drawable myIcon;
-    Bitmap src, bm1;
+    Bitmap src, bm1, r, b, g, bm2;
 
     public void setColor() {
 
         Glide.with(getActivity()).load(R.drawable.images).into(editImg);
+
+
         opacitySlider.setOpacity(0);
         myIcon = getResources().getDrawable(R.drawable.images);
         src = ((BitmapDrawable) myIcon).getBitmap();
         bm1 = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bm1);
 
-
+        setRBG();
         shadeSlider.addOnColorListener(new OnColorListener() {
             @Override
             public void onColorChanged(int color) {
@@ -154,9 +167,38 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
         });
     }
 
+    public void setRBG() {
+       bm2 = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.sc000_avatar_a);
+        try {
+            r = ApplyFilter.applyFilter_channelMixR(bm2);
+            b = ApplyFilter.applyFilter_channelMixB(bm2);
+            g = ApplyFilter.applyFilter_channelMixG(bm2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        imgFilterR.setImageBitmap(bm2);
+        imgFilterB.setImageBitmap(bm2);
+        imgFilterG.setImageBitmap(bm2);
+    }
+
+    @OnClick(R.id.filter_R)
+    public void imgFilterR() {
+        imgFilterR.setImageBitmap(r);
+    }
+    @OnClick(R.id.filter_B)
+    public void imgFilterB() {
+        imgFilterB.setImageBitmap(b);
+    }
+    @OnClick(R.id.filter_G)
+    public void imgFilterG() {
+        imgFilterG.setImageBitmap(g);
+    }
+
     @Override
     public void onHeaderBack() {
-
+        getActivity().getSupportFragmentManager().popBackStack();
+//        DebugLog.i("imgLeftBack:FM");
     }
 
     @Override
@@ -171,7 +213,7 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
 
     @Override
     public void onHeaderEdit() {
-        FragmentUtil.pushFragment(getActivity(), FragmentFilterImg.newIntance() ,null);
+        FragmentUtil.pushFragment(getActivity(), FragmentFilterImg.newIntance(), null);
     }
 
     @Override
@@ -179,7 +221,7 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
 
     }
 
-    public int qualityImg =0 ;
+    public int qualityImg = 0;
 
     public void saveImage() {
         new AsyncTask<Void, Boolean, Boolean>() {

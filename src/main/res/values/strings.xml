@@ -5,5 +5,5 @@
     <string name="edit_img_title_opacity_color">Opacity Color</string>
     <string name="edit_img_blend_color">Blend color</string>
     <string name="edit_img_title_blend_color">Opacity blend color</string>
-    <string name="edit_img_quality">Quality image</string>
+    <string name="edit_img_quality">Quality image Save</string>
 </resources>

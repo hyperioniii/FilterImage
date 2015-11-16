@@ -1,14 +1,17 @@
 package com.example.linhnh.myapplication.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.linhnh.myapplication.R;
+import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.KeyboardUtil;
 
 import butterknife.ButterKnife;
@@ -21,6 +24,7 @@ public abstract class BaseFragment extends Fragment {
     protected View rootView;
 
     protected ViewGroup fragmentViewParent;
+
 
     @Nullable
     @Override
@@ -64,6 +68,7 @@ public abstract class BaseFragment extends Fragment {
 
     abstract protected void initData();
 
+
     private void showOrHide(View subject, View target) {
         subject.setVisibility(subject == target ? View.VISIBLE : View.GONE);
     }
@@ -89,5 +94,6 @@ public abstract class BaseFragment extends Fragment {
             });
         }
     }
+
 }
 

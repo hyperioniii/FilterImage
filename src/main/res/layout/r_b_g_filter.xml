@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_gray"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_margin="5dp"
+        android:id="@+id/filter_R"
+        android:layout_weight="1"
+        android:text="R"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/sc000_avatar_a"/>
+    <ImageView
+        android:layout_margin="5dp"
+        android:id="@+id/filter_B"
+        android:layout_weight="1"
+        android:text="B"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+    <ImageView
+        android:layout_margin="5dp"
+        android:id="@+id/filter_G"
+        android:layout_weight="1"
+        android:text="G"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+</LinearLayout>

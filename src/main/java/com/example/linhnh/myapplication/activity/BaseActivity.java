@@ -3,6 +3,7 @@ package com.example.linhnh.myapplication.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +18,6 @@ import butterknife.ButterKnife;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
-
 
     boolean isUnregistEventBus = false;
 
@@ -103,5 +103,19 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    /**
+     *
+     * @return
+     */
+    protected Fragment getCurrentFragment(int resId) {
+        try {
+            Fragment currentFrag = getSupportFragmentManager().findFragmentById(resId);
+            return currentFrag;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

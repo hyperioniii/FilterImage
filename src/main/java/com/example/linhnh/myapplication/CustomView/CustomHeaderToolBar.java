@@ -72,7 +72,6 @@ public class CustomHeaderToolBar extends android.support.v7.widget.Toolbar{
 
     @OnClick(R.id.toolbar_left_icon_back)
     public void imgLeftBack(){
-
         if (onHeaderIconClickListener != null){
         onHeaderIconClickListener.onHeaderBack();}
 
