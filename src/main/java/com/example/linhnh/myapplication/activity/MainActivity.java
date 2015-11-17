@@ -53,11 +53,6 @@ public class MainActivity extends BaseActivity implements OnHeaderIconClickListe
         } else {
             UiUtil.hideView(toolBar, true);
         }
-        if (event.isBottomTabVisibility()) {
-//            UiUtil.showView(commonTab);
-        } else {
-//            UiUtil.hideView(commonTab, true);
-        }
     }
 
     private void popEntireFragmentBackStack() {
@@ -66,7 +61,6 @@ public class MainActivity extends BaseActivity implements OnHeaderIconClickListe
         for (int i = 0; i < backStackCount; i++) {
             fm.popBackStack();
         }
-//        showHideLeftIcon(null);
     }
 
     @Override

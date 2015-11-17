@@ -9,7 +9,7 @@
     <color name="primaryText">#000000</color>
     <color name="primaryTextLight">#ffffff</color>
 
-    <color name="tranparent">#ffffffff</color>
+    <color name="tranparent">#00000000</color>
     <color name="base_green">#95c327</color>
     <color name="dark_green">#87b426</color>
     <color name="base_gray">#ebecef</color>

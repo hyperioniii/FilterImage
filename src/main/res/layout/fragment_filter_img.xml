@@ -36,13 +36,57 @@
         android:layout_alignParentBottom="true"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/btn_setting"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="top|right"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_setting_filter_img" />
+    <com.example.linhnh.myapplication.CustomView.MetaballMenu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/metaball_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        app:backgroundColor="@color/tranparent"
+        app:backgroundShapeRadius="5dp"
+        app:drawablePadding="10dp"
+        app:metaballColor="@color/txt_red"
+        app:needsElevation="true"
+        >
+
+        <ImageView
+            android:id="@+id/btn_setting1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:src="@android:drawable/ic_menu_delete" />
+
+        <ImageView
+            android:id="@+id/btn_setting2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:src="@android:drawable/ic_menu_camera" />
+
+        <ImageView
+            android:id="@+id/btn_setting3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:src="@android:drawable/ic_menu_save" />
+        <ImageView
+            android:id="@+id/btn_setting4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_setting_filter_img" />
+    </com.example.linhnh.myapplication.CustomView.MetaballMenu>
+
 
 </RelativeLayout>
