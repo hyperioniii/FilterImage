@@ -5,5 +5,7 @@
     <declare-styleable name="SlideView">
         <attr name="slideView" format="integer" />
     </declare-styleable>
-    
+    <declare-styleable name="ImageAutoScale">
+        <attr name="heightPerWidth" format="float" />
+    </declare-styleable>
 </resources>

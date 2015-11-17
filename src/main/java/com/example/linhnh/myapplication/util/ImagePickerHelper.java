@@ -13,7 +13,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 
 
+import com.example.linhnh.myapplication.activity.BaseActivity;
 import com.example.linhnh.myapplication.constant.AppConstant;
+import com.example.linhnh.myapplication.fragment.BaseFragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,24 +27,26 @@ import java.util.List;
  */
 public class ImagePickerHelper {
 
+
     public static final int AVATAR_PICKER_REQUEST_CODE = 6969;
     public static final int NORMAL_PICKER_REQUEST_CODE = 9696;
     public static final int AVATAR_TRIM_REQUEST_CODE = 678;
     public static final int NORMAL_TRIM_REQUEST_CODE = 789;
+    public static final int VIDEO_CAPTURE_REQUEST_CODE = 7899;
 
-    private Fragment baseFragment;
-    private Activity baseActivity;
+    private BaseFragment baseFragment;
+    private BaseActivity baseActivity;
     private boolean isFromFragment;
 
     private OnPickerSuccess onPickerSuccess;
 
-    public ImagePickerHelper(Fragment baseFragment, OnPickerSuccess onPickerSuccess) {
+    public ImagePickerHelper(BaseFragment baseFragment, OnPickerSuccess onPickerSuccess) {
         this.baseFragment = baseFragment;
         isFromFragment = true;
         this.onPickerSuccess = onPickerSuccess;
     }
 
-    public ImagePickerHelper(Activity baseActivity, OnPickerSuccess onPickerSuccess) {
+    public ImagePickerHelper(BaseActivity baseActivity, OnPickerSuccess onPickerSuccess) {
         this.baseActivity = baseActivity;
         isFromFragment = false;
         this.onPickerSuccess = onPickerSuccess;
@@ -69,7 +73,7 @@ public class ImagePickerHelper {
         DebugLog.i("outputFileUri: " + outputFileUri.toString());
         // Camera.
         final List<Intent> cameraIntents = new ArrayList<>();
-        final Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        final Intent captureIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         final PackageManager packageManager = isFromFragment ? baseFragment.getActivity().getPackageManager() : baseActivity.getPackageManager();
         final List<ResolveInfo> listCam = packageManager.queryIntentActivities(captureIntent, 0);
         for (ResolveInfo res : listCam) {

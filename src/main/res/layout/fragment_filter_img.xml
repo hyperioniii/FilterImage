@@ -1,17 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?><!--<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
+
+    <com.example.linhnh.myapplication.CustomView.ImageAutoScale
+        android:id="@+id/img_main_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border_add_image"
+        android:clickable="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_add_image_large"
+        android:visibility="visible"
+        app:heightPerWidth="1" />
 
     <ImageView
         android:id="@+id/review_filter_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/line_demo_filter"
         android:layout_width="match_parent"
-        android:layout_height="110dp"/>
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/btn_setting"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="top|right"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_setting_filter_img" />
+
+</RelativeLayout>
