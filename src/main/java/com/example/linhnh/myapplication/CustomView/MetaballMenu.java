@@ -1,5 +1,6 @@
 package com.example.linhnh.myapplication.CustomView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -11,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -212,7 +214,9 @@ public class MetaballMenu extends LinearLayout {
 
         //Set the background color
         //setBackgroundColor(mBackgroundColor);
-        setBackground(createBackgroundShape());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            setBackground(createBackgroundShape());
+        }
 
         //Set the orientation
         setOrientation(LinearLayout.HORIZONTAL);

@@ -31,7 +31,7 @@ public class FilterViewHolder extends OnClickViewHolder {
     public static int LAYOUT_FILTER_IMG = R.layout.item_filter_img ;
 
     @InjectView(R.id.item_filter)
-    ImageView ImgFilter;
+    public ImageView ImgFilter;
 
 
     public void setimg(int i){

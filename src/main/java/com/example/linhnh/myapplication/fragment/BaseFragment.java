@@ -40,6 +40,7 @@ public abstract class BaseFragment extends Fragment {
         } else {
             rootView = inflater.inflate(R.layout.layout_base_fragment, container, false);
             fragmentViewParent = (ViewGroup) rootView.findViewById(R.id.fragmentViewParent);
+
             fragmentViewParent.addView(inflater.inflate(setLayoutId(), container, false));
             ButterKnife.inject(this, rootView);
         }

@@ -22,9 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by hex0r on 7/8/15.
- */
 public class ImagePickerHelper {
 
 
@@ -33,6 +30,7 @@ public class ImagePickerHelper {
     public static final int AVATAR_TRIM_REQUEST_CODE = 678;
     public static final int NORMAL_TRIM_REQUEST_CODE = 789;
     public static final int VIDEO_CAPTURE_REQUEST_CODE = 7899;
+    public static final int CAMERA_PICKER_REQUEST_CODE = 1337;
 
     private BaseFragment baseFragment;
     private BaseActivity baseActivity;
@@ -90,9 +88,15 @@ public class ImagePickerHelper {
         galleryIntent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
         galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
         // Chooser of filesystem options.
-        final Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Source");
+        Intent chooserIntent = Intent.createChooser(galleryIntent, "Select Source");
         // Add the camera options.
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toArray(new Parcelable[cameraIntents.size()]));
+
+        if(requestCode == CAMERA_PICKER_REQUEST_CODE)
+        {
+            chooserIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        }
+
 
         if (isFromFragment) {
             baseFragment.startActivityForResult(chooserIntent, requestCode);
@@ -193,6 +197,8 @@ public class ImagePickerHelper {
                 case AVATAR_TRIM_REQUEST_CODE:
                 case NORMAL_TRIM_REQUEST_CODE:
                     handleResultData(data, requestCode == AVATAR_TRIM_REQUEST_CODE, false);
+                case CAMERA_PICKER_REQUEST_CODE:
+                    handleResultData(data, requestCode == CAMERA_PICKER_REQUEST_CODE, false);
             }
         }
     }

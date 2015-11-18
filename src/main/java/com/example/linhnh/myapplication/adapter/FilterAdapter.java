@@ -11,7 +11,7 @@ import com.example.linhnh.myapplication.callback.OnRecyclerViewItemClick;
 /**
  * Created by LinhNguyen on 11/12/2015.
  */
-public class FilterAdapter extends AdapterWithItemClick<FilterViewHolder> implements OnRecyclerViewItemClick{
+public class FilterAdapter extends AdapterWithItemClick<FilterViewHolder> {
 
     public int[] list_filter = {R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,
             R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a};
@@ -27,7 +27,6 @@ public class FilterAdapter extends AdapterWithItemClick<FilterViewHolder> implem
 
     @Override
     public void onBindViewHolder(FilterViewHolder holder, int position) {
-        holder.setOnRecyclerViewItemClick(this);
         holder.setimg(list_filter[position]);
     }
 
@@ -36,8 +35,5 @@ public class FilterAdapter extends AdapterWithItemClick<FilterViewHolder> implem
        return list_filter.length;
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
 
-    }
 }
