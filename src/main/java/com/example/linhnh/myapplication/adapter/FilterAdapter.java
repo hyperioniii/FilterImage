@@ -27,6 +27,7 @@ public class FilterAdapter extends AdapterWithItemClick<FilterViewHolder> {
 
     @Override
     public void onBindViewHolder(FilterViewHolder holder, int position) {
+        holder.setOnRecyclerViewItemClick(onRecyclerViewItemClick);
         holder.setimg(list_filter[position]);
     }
 

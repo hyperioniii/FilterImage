@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
@@ -29,6 +30,7 @@ import com.example.linhnh.myapplication.filter.util.AndroidUtils;
 import com.example.linhnh.myapplication.util.FileUtils;
 import com.example.linhnh.myapplication.util.FragmentUtil;
 import com.example.linhnh.myapplication.util.ImagePickerHelper;
+import com.example.linhnh.myapplication.util.ListFilter;
 import com.example.linhnh.myapplication.util.UiUtil;
 
 import java.io.File;
@@ -43,7 +45,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by LinhNguyen on 11/12/2015.
  */
-public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClickListener,MetaballMenu.MetaballMenuClickListener, OnRecyclerViewItemClick{
+public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClickListener, MetaballMenu.MetaballMenuClickListener, OnRecyclerViewItemClick {
 
     @InjectView(R.id.review_filter_img)
     ImageView imgFilter;
@@ -55,7 +57,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
     ImageAutoScale imgAdd;
 
     @InjectView(R.id.metaball_menu)
-     MetaballMenu metaballMenu;
+    MetaballMenu metaballMenu;
 
     FilterAdapter adapter;
     public Bitmap bitmap;
@@ -79,7 +81,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),null));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), null));
     }
 
     @Override
@@ -88,7 +90,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
 
     @Override
     protected void initData() {
-        UiUtil.hideView(metaballMenu,true);
+        UiUtil.hideView(metaballMenu, true);
         metaballMenu.setMenuClickListener(this);
         imagePickerHelper = new ImagePickerHelper(this, new ImagePickerHelper.OnPickerSuccess() {
             @Override
@@ -98,22 +100,22 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
                     return;
                 }
                 File imageFile = new File(path);
-                 bitmap = BitmapFactory.decodeFile(path);
+                bitmap = BitmapFactory.decodeFile(path);
 
-                Glide.with(getActivity()).load("file://" +imageFile).into(imgFilter);
+                Glide.with(getActivity()).load("file://" + imageFile).into(imgFilter);
                 UiUtil.hideView(imgAdd, true);
                 UiUtil.showView(metaballMenu);
                 UiUtil.showView(imgFilter);
             }
         });
 
-        adapter = new FilterAdapter() ;
+        adapter = new FilterAdapter();
         adapter.setOnRecyclerViewItemClick(this);
         mRecyclerView.setAdapter(adapter);
     }
 
     @OnClick(R.id.img_main_add)
-    public void choseImage(){
+    public void choseImage() {
         imagePickerHelper.openImageIntent(ImagePickerHelper.NORMAL_TRIM_REQUEST_CODE);
     }
 
@@ -151,7 +153,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btn_setting1:
                 UiUtil.showView(mRecyclerView);
                 break;
@@ -159,11 +161,11 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
                 imagePickerHelper.openImageIntent(ImagePickerHelper.CAMERA_PICKER_REQUEST_CODE);
                 break;
             case R.id.btn_setting3:
-                UiUtil.hideView(mRecyclerView,true);
+                UiUtil.hideView(mRecyclerView, true);
                 break;
             case R.id.btn_setting4:
-                UiUtil.hideView(mRecyclerView,true);
-                UiUtil.hideView(metaballMenu,true);
+                UiUtil.hideView(mRecyclerView, true);
+                UiUtil.hideView(metaballMenu, true);
                 UiUtil.hideView(imgFilter, true);
                 UiUtil.showView(imgAdd);
                 imagePickerHelper.openImageIntent(ImagePickerHelper.NORMAL_TRIM_REQUEST_CODE);
@@ -173,36 +175,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
 
     @Override
     public void onItemClick(View view, int position) {
-        switch (position){
-            case 1:
-                try {
-                    imgFilter.setImageBitmap(ApplyFilter.applyFilter_edge(bitmap));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case 2:
-                try {
-                    imgFilter.setImageBitmap(ApplyFilter.applyFilter_channelMixG(bitmap));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case 3:
-                try {
-                    imgFilter.setImageBitmap(ApplyFilter.applyFilter_glow(bitmap));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case 4:
-                try {
-                    imgFilter.setImageBitmap(ApplyFilter.applyFilter_grayscale(bitmap));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
+        imgFilter.setImageBitmap(ListFilter.get(bitmap, position));
 
-        }
     }
 }
