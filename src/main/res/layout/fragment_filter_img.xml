@@ -24,10 +24,12 @@
         app:heightPerWidth="1" />
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/review_filter_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="match_parent"
+        android:scaleType="matrix"
          />
 
     <android.support.v7.widget.RecyclerView
@@ -78,7 +80,7 @@
             android:layout_weight="1"
             android:layout_margin="5dp"
             android:padding="5dp"
-            android:src="@android:drawable/ic_menu_save" />
+            android:src="@android:drawable/ic_menu_always_landscape_portrait" />
         <ImageView
             android:id="@+id/btn_setting4"
             android:layout_width="0dp"
