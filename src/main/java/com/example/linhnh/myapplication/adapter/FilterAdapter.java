@@ -14,7 +14,9 @@ import com.example.linhnh.myapplication.callback.OnRecyclerViewItemClick;
 public class FilterAdapter extends AdapterWithItemClick<FilterViewHolder> {
 
     public int[] list_filter = {R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,
-            R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a};
+            R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a
+            ,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a
+            ,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a,R.drawable.sc000_avatar_a};
 
     public FilterAdapter() {
     }

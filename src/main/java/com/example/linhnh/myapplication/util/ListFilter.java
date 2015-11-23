@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 
+import com.example.linhnh.myapplication.filter.BlockFilter;
 import com.example.linhnh.myapplication.filter.ChannelMixFilter;
 import com.example.linhnh.myapplication.filter.ContrastFilter;
 import com.example.linhnh.myapplication.filter.EdgeFilter;
@@ -63,7 +64,7 @@ public class ListFilter {
                     bitmap = applyFilter_edge(bim);
                     break;
                 case 8:
-                    bitmap = applyFilter_contrast(bim);
+                    bitmap = applyFilter_block(bim);
                     break;
                 case 9:
                     bitmap = applyFilter_contrast(bim);
@@ -212,4 +213,16 @@ public class ListFilter {
 
         return bitmap_temp;
     }
+
+    public static Bitmap applyFilter_block(Bitmap bitmap) throws FileNotFoundException, IOException {
+
+        BlockFilter filter = new BlockFilter();
+        int[] src = AndroidUtils.bitmapToIntArray(bitmap);
+        src = filter.filter(src, bitmap.getWidth(), bitmap.getHeight());
+        Bitmap bitmap_temp = Bitmap.createBitmap(src, bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+        return bitmap_temp;
+    }
+
+
 }

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
@@ -174,6 +175,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
     @Override
     public void onItemClick(View view, int position) {
         imgFilter.setImageBitmap(ListFilter.get(path, position));
+        Toast.makeText(getActivity(),""+position,Toast.LENGTH_SHORT).show();
 
     }
 
