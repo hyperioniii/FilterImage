@@ -25,11 +25,11 @@ import com.example.linhnh.myapplication.activity.MainActivity;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.constant.HeaderIconOption;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
-import com.example.linhnh.myapplication.filter.base.ApplyFilter;
 import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.FileUtils;
 import com.example.linhnh.myapplication.util.FragmentUtil;
 import com.example.linhnh.myapplication.util.ImagePickerHelper;
+import com.example.linhnh.myapplication.util.ListFilter;
 import com.example.linhnh.view.ProgessSlideIndicator;
 import com.larswerkman.lobsterpicker.OnColorListener;
 import com.larswerkman.lobsterpicker.adapters.BitmapColorAdapter;
@@ -177,9 +177,9 @@ public class FragmentEditImage extends BaseFragment implements OnHeaderIconClick
     public void setRBG() {
        bm2 = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.sc000_avatar_a);
         try {
-            r = ApplyFilter.applyFilter_channelMixR(bm2);
-            b = ApplyFilter.applyFilter_channelMixB(bm2);
-            g = ApplyFilter.applyFilter_channelMixG(bm2);
+            r = ListFilter.applyFilter_channelMixR(bm2);
+            b = ListFilter.applyFilter_channelMixB(bm2);
+            g = ListFilter.applyFilter_channelMixG(bm2);
         } catch (IOException e) {
             e.printStackTrace();
         }
