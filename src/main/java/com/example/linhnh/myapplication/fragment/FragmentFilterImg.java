@@ -174,7 +174,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
 
     @Override
     public void onItemClick(View view, int position) {
-        imgFilter.setImageBitmap(ListFilter.get(path, position));
+        imgFilter.setImageBitmap(ListFilter.get(path, position,mProgressDialog));
         Toast.makeText(getActivity(),""+position,Toast.LENGTH_SHORT).show();
 
     }

@@ -1,7 +1,9 @@
 package com.example.linhnh.myapplication.util;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.Display;
 import android.view.View;
 
 import com.example.linhnh.myapplication.filter.BlockFilter;
@@ -10,6 +12,7 @@ import com.example.linhnh.myapplication.filter.ContrastFilter;
 import com.example.linhnh.myapplication.filter.EdgeFilter;
 import com.example.linhnh.myapplication.filter.GlowFilter;
 import com.example.linhnh.myapplication.filter.GrayscaleFilter;
+import com.example.linhnh.myapplication.filter.HSBAdjustFilter;
 import com.example.linhnh.myapplication.filter.SharpenFilter;
 import com.example.linhnh.myapplication.filter.util.AndroidUtils;
 
@@ -24,9 +27,9 @@ import java.util.List;
 public class ListFilter {
 
 
-    public static Bitmap get(String path, int pos) {
+    public static Bitmap get(String path, int pos, ProgressDialog mProgess) {
         Bitmap bitmap = null;
-
+        mProgess.show();
         final BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inJustDecodeBounds = true;
         // Calculate inSampleSize
@@ -67,7 +70,7 @@ public class ListFilter {
                     bitmap = applyFilter_block(bim);
                     break;
                 case 9:
-                    bitmap = applyFilter_contrast(bim);
+                    bitmap = applyFilter_HSBAdjustFilter(bim);
                     break;
                 case 10:
                     bitmap = applyFilter_contrast(bim);
@@ -99,10 +102,6 @@ public class ListFilter {
         return bitmap_temp;
     }
 
-    /*
-    *
-    */
-
     public static Bitmap applyFilter_channelMixB(Bitmap bitmap) throws FileNotFoundException, IOException {
 
         Bitmap bitmap_temp = bitmap.copy(Bitmap.Config.ARGB_8888, true);
@@ -120,11 +119,6 @@ public class ListFilter {
         }
         return bitmap_temp;
     }
-
-
-    /*
-    *
-    */
 
     public static Bitmap applyFilter_glow(Bitmap bitmap) throws FileNotFoundException, IOException {
 
@@ -152,9 +146,6 @@ public class ListFilter {
         return bitmap_temp;
     }
 
-    /*
-   *
-   */
     public static Bitmap applyFilter_grayscale(Bitmap bitmap) throws FileNotFoundException, IOException {
 
         Bitmap bitmap_temp = bitmap.copy(Bitmap.Config.ARGB_8888, true);
@@ -203,7 +194,6 @@ public class ListFilter {
         return bitmap_temp;
     }
 
-
     public static Bitmap applyFilter_edge(Bitmap bitmap) throws FileNotFoundException, IOException {
 
         EdgeFilter filter = new EdgeFilter();
@@ -224,5 +214,26 @@ public class ListFilter {
         return bitmap_temp;
     }
 
+    public static Bitmap applyFilter_HSBAdjustFilter(final Bitmap bitmap) throws FileNotFoundException, IOException {
+        Bitmap bitmap_temp = null;
+
+        bitmap_temp = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        GrayscaleFilter filter = new GrayscaleFilter();
+        for (int y = 0; y < bitmap.getHeight(); y++) {
+            for (int x = 0; x < bitmap.getWidth(); x++) {
+                bitmap_temp.setPixel(x, y, filter.filterRGB(x, y, bitmap.getPixel(x, y)));
+            }
+        }
+        HSBAdjustFilter filter2 = new HSBAdjustFilter();
+        filter2.setHFactor((float) -65.0);
+        filter2.setSFactor((float) -0.52);
+        filter2.setBFactor((float) -0.07);
+        for (int y = 0; y < bitmap.getHeight(); y++) {
+            for (int x = 0; x < bitmap.getWidth(); x++) {
+                bitmap_temp.setPixel(x, y, filter2.filterRGB(x, y, bitmap.getPixel(x, y)));
+            }
+        }
+        return bitmap_temp;
+    }
 
 }

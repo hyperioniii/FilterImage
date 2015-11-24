@@ -1,6 +1,7 @@
 package com.example.linhnh.myapplication.fragment;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,7 +25,7 @@ public abstract class BaseFragment extends Fragment {
     protected View rootView;
 
     protected ViewGroup fragmentViewParent;
-
+    public ProgressDialog mProgressDialog;
 
     @Nullable
     @Override
@@ -57,8 +58,18 @@ public abstract class BaseFragment extends Fragment {
         if (getArguments() != null) {
             getArgument(getArguments());
         }
+        mProgressDialog = new ProgressDialog(getActivity());
         initView(rootView);
         initData();
+    }
+
+
+    public void showDialogProess(){
+        mProgressDialog.show();
+    }
+
+    public void dimisDialogProgess(){
+        mProgressDialog.dismiss();
     }
 
     abstract protected int setLayoutId();

@@ -1,5 +1,6 @@
 package com.example.linhnh.myapplication.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     boolean isUnregistEventBus = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -38,8 +40,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
         initData();
     }
-
-
 
     @Override
     protected void onDestroy() {
