@@ -24,6 +24,7 @@ import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.callback.OnRecyclerViewItemClick;
 import com.example.linhnh.myapplication.constant.HeaderIconOption;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
+import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.FileUtils;
 import com.example.linhnh.myapplication.util.ImagePickerHelper;
 import com.example.linhnh.myapplication.util.ListFilter;
@@ -199,6 +200,8 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
     private float d = 0f;
     private float newRot = 0f;
     private float[] lastEvent = null;
+    private float centreX;
+    private float centreY;
 
 
     protected View.OnTouchListener onTouchListener = new View.OnTouchListener() {
@@ -206,6 +209,8 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         public boolean onTouch(View v, MotionEvent event) {
             // handle touch events here
             ImageView view = (ImageView) v;
+            centreX=view.getX() + view.getWidth()  / 2;
+            centreY=view.getY() + view.getHeight() / 2;
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
                 case MotionEvent.ACTION_DOWN:
                     savedMatrix.set(matrix);
@@ -234,16 +239,18 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
                     break;
                 case MotionEvent.ACTION_MOVE:
                     if (mode == DRAG) {
-                        matrix.set(savedMatrix);
-                        float dx = event.getX() - start.x;
-                        float dy = event.getY() - start.y;
-                        matrix.postTranslate(dx, dy);
+//                        matrix.set(savedMatrix);
+//                        float dx = event.getX() - start.x;
+//                        float dy = event.getY() - start.y;
+//                        matrix.postTranslate(dx, dy);
                     } else if (mode == ZOOM) {
                         float newDist = spacing(event);
-                        if (newDist > 10f) {
+                        float scale = (newDist / oldDist);
+                        DebugLog.d("=== ZOOM ------------|||"+ scale+"---------|||" + newDist);
+                        if (newDist > 10f ) {
                             matrix.set(savedMatrix);
-                            float scale = (newDist / oldDist);
-                            matrix.postScale(scale, scale, mid.x, mid.y);
+//                            matrix.postScale(scale, scale, mid.x, mid.y);
+                            matrix.postScale(scale, scale, centreX, centreY);
                         }
                         if (lastEvent != null && event.getPointerCount() == 3) {
                             newRot = rotation(event);
