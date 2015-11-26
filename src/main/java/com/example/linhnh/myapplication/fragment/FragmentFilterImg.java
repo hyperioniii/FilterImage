@@ -91,7 +91,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         imagePickerHelper = new ImagePickerHelper(this, new ImagePickerHelper.OnPickerSuccess() {
             @Override
             public void onFinish(Uri uri) {
-                 path = FileUtils.getPath(getActivity(), uri);
+                path = FileUtils.getPath(getActivity(), uri);
                 if (path == null) {
                     return;
                 }
@@ -149,7 +149,8 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
 
     }
 
-    public int rotation = 0 ;
+    public int rotation = 0;
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -175,8 +176,8 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
 
     @Override
     public void onItemClick(View view, int position) {
-        imgFilter.setImageBitmap(ListFilter.get(path, position,mProgressDialog));
-        Toast.makeText(getActivity(),""+position,Toast.LENGTH_SHORT).show();
+        imgFilter.setImageBitmap(ListFilter.get(path, position, mProgressDialog));
+        Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -209,8 +210,8 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         public boolean onTouch(View v, MotionEvent event) {
             // handle touch events here
             ImageView view = (ImageView) v;
-            centreX=view.getX() + view.getWidth()  / 2;
-            centreY=view.getY() + view.getHeight() / 2;
+            centreX = view.getX() + view.getWidth() / 2;
+            centreY = view.getY() + view.getHeight() / 2;
             switch (event.getAction() & MotionEvent.ACTION_MASK) {
                 case MotionEvent.ACTION_DOWN:
                     savedMatrix.set(matrix);
@@ -246,10 +247,11 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
                     } else if (mode == ZOOM) {
                         float newDist = spacing(event);
                         float scale = (newDist / oldDist);
-                        DebugLog.d("=== ZOOM ------------|||"+ scale+"---------|||" + newDist);
-                        if (newDist > 10f ) {
+                        DebugLog.d("=== ZOOM ------------|||" + scale + "---------|||" + newDist);
+                        if (newDist > 10f) {
                             matrix.set(savedMatrix);
 //                            matrix.postScale(scale, scale, mid.x, mid.y);
+                            DebugLog.d("=== ------------|||" + view.getWidth());
                             matrix.postScale(scale, scale, centreX, centreY);
                         }
                         if (lastEvent != null && event.getPointerCount() == 3) {
@@ -262,7 +264,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
                             float sx = values[0];
                             float xc = (view.getWidth() / 2) * sx;
                             float yc = (view.getHeight() / 2) * sx;
-                            matrix.postRotate(r, tx + xc, ty + yc);
+//                            matrix.postRotate(r, tx + xc, ty + yc);
                         }
                     }
                     break;
