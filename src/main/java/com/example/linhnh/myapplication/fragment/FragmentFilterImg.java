@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +20,7 @@ import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
 import com.example.linhnh.myapplication.CustomView.MetaballMenu;
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.activity.MainActivity;
+import com.example.linhnh.myapplication.activity.PreviewFullScreenActivity;
 import com.example.linhnh.myapplication.adapter.DividerItemDecoration;
 import com.example.linhnh.myapplication.adapter.FilterAdapter;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
@@ -41,6 +44,9 @@ import de.greenrobot.event.EventBus;
  */
 public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClickListener, MetaballMenu.MetaballMenuClickListener, OnRecyclerViewItemClick {
 
+//    @InjectView(R.id.review_filter_img)
+//    ImageView imgReview;
+
     @InjectView(R.id.review_filter_img)
     ImageView imgFilter;
 
@@ -57,6 +63,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
     public Bitmap bitmap;
     String path;
     private ImagePickerHelper imagePickerHelper;
+    private ListFilter listFilter;
 
     public static FragmentFilterImg newIntance() {
         FragmentFilterImg fm = new FragmentFilterImg();
@@ -108,7 +115,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         adapter.setOnRecyclerViewItemClick(this);
         mRecyclerView.setAdapter(adapter);
 
-        imgFilter.setOnTouchListener(onTouchListener);
+//        imgFilter.setOnTouchListener(onTouchListener);
 
     }
 
@@ -174,12 +181,27 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         }
     }
 
+    public int pos = 10000;
+
     @Override
     public void onItemClick(View view, int position) {
-        imgFilter.setImageBitmap(ListFilter.get(path, position, mProgressDialog));
+//        imgFilter.setImageBitmap(ListFilter.get(path, position, mProgressDialog));
+        listFilter = new ListFilter(path, position, mProgressDialog,imgFilter);
+        listFilter.execute();
         Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
-
+        pos = position;
     }
+
+    @OnClick(R.id.review_filter_img)
+    public void  imgFilter(){
+//        listFilter = new ListFilter(path, pos, mProgressDialog, imgReview);
+//        listFilter.execute();
+        Intent intent = new Intent(getActivity(), PreviewFullScreenActivity.class);
+        Drawable drawable   = imgFilter.getDrawable();
+        Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
+        intent.putExtra(PreviewFullScreenActivity.PREVIEW_IMAGE, bitmap);
+        startActivity(intent);
+    };
 
     /*
     *   Mutil touch

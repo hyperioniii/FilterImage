@@ -3,12 +3,16 @@ package com.example.linhnh.myapplication.util;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.view.Display;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.linhnh.myapplication.filter.BlockFilter;
 import com.example.linhnh.myapplication.filter.ChannelMixFilter;
 import com.example.linhnh.myapplication.filter.ContrastFilter;
+import com.example.linhnh.myapplication.filter.DoGFilter;
 import com.example.linhnh.myapplication.filter.EdgeFilter;
 import com.example.linhnh.myapplication.filter.GlowFilter;
 import com.example.linhnh.myapplication.filter.GrayscaleFilter;
@@ -24,12 +28,48 @@ import java.util.List;
 /**
  * Created by LinhNguyen on 11/19/2015.
  */
-public class ListFilter {
+public class ListFilter extends  AsyncTask <String , Void , Bitmap>{
 
+    String path;
+    int pos;
+    ProgressDialog mProgess;
+    Bitmap bitmap;
+    ImageView imView;
 
-    public static Bitmap get(String path, int pos, ProgressDialog mProgess) {
-        Bitmap bitmap = null;
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public ListFilter(String path, int pos, ProgressDialog mProgess,ImageView imView) {
+        this.path = path;
+        this.pos = pos;
+        this.mProgess = mProgess;
+        this.imView = imView ;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
         mProgess.show();
+    }
+
+    @Override
+    protected Bitmap doInBackground(String... params) {
+        DebugLog.d("-------------- "+path +"-----------------"+pos);
+        setBitmap(path, pos, mProgess);
+        return bitmap;
+    }
+
+    @Override
+    protected void onPostExecute(Bitmap bitmap) {
+        super.onPostExecute(bitmap);
+        mProgess.dismiss();
+        imView.setImageBitmap(bitmap);
+    }
+
+
+
+    public void setBitmap (String path, int pos, ProgressDialog mProgess) {
         final BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inJustDecodeBounds = true;
         // Calculate inSampleSize
@@ -38,6 +78,9 @@ public class ListFilter {
         opt.inJustDecodeBounds = false;
 
         Bitmap bim = BitmapFactory.decodeFile(path, opt);
+
+        Drawable drawable = Drawable.createFromPath(path);
+
         DebugLog.d("check bitmap-----" + bim);
 
         try {
@@ -73,17 +116,19 @@ public class ListFilter {
                     bitmap = applyFilter_HSBAdjustFilter(bim);
                     break;
                 case 10:
-                    bitmap = applyFilter_contrast(bim);
+                    bitmap = applyFilter_DoGFilter(drawable);
                     break;
                 case 11:
                     bitmap = applyFilter_contrast(bim);
                     break;
+                default:
+                    bitmap = bim ;
 
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return bitmap;
+
     }
 
     /*
@@ -224,16 +269,30 @@ public class ListFilter {
                 bitmap_temp.setPixel(x, y, filter.filterRGB(x, y, bitmap.getPixel(x, y)));
             }
         }
-        HSBAdjustFilter filter2 = new HSBAdjustFilter();
-        filter2.setHFactor((float) -65.0);
-        filter2.setSFactor((float) -0.52);
-        filter2.setBFactor((float) -0.07);
-        for (int y = 0; y < bitmap.getHeight(); y++) {
-            for (int x = 0; x < bitmap.getWidth(); x++) {
-                bitmap_temp.setPixel(x, y, filter2.filterRGB(x, y, bitmap.getPixel(x, y)));
-            }
-        }
         return bitmap_temp;
     }
+
+    public static Bitmap applyFilter_DoGFilter(final Drawable bitmap) throws FileNotFoundException, IOException {
+        Bitmap bitmap_temp = null;
+        final int width = bitmap.getIntrinsicWidth();
+        final int height = bitmap.getIntrinsicHeight();
+
+        DoGFilter filter = new DoGFilter();
+        filter.setInvert(true);
+        filter.setNormalize(false);
+        filter.setRadius1(getAmout(0));
+        filter.setRadius2(getAmout(162));
+        int[] src = AndroidUtils.drawableToIntArray(bitmap);
+        src = filter.filter(src, width, height);
+        bitmap_temp = Bitmap.createBitmap(src, width, height, Bitmap.Config.ARGB_8888);
+        return bitmap_temp;
+    }
+
+    private static float getAmout(int value) {
+        float retValue = 0;
+        retValue = (float) (value / 100f);
+        return retValue;
+    }
+
 
 }

@@ -49,4 +49,5 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.2.0'
     compile 'com.larswerkman:lobsterpicker:1.0.0'
     compile project(':progessbarindicator')
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
 }

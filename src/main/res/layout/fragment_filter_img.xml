@@ -23,6 +23,17 @@
         android:visibility="visible"
         app:heightPerWidth="1" />
 
+    <!--<com.example.linhnh.myapplication.CustomView.ImageAutoScale-->
+        <!--android:id="@+id/img_main_small"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:clickable="true"-->
+        <!--android:scaleType="centerInside"-->
+        <!--android:visibility="gone"-->
+        <!--/>-->
+
     <ImageView
         android:visibility="gone"
         android:id="@+id/review_filter_img"
