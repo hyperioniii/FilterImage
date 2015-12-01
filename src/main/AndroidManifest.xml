@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PreviewFullScreenActivity"/>
+        <activity android:name=".activity.PreViewImageActivity"/>
     </application>
 
 </manifest>

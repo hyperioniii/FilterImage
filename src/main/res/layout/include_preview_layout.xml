@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_preview_background">
 
-    <jp.softbank.bg.view.ImageAutoScale
-        android:id="@+id/img_preview"
+    <com.example.linhnh.myapplication.CustomView.ImageAutoScale
+        android:id="@+id/img_preview_ac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_delete"
-        android:layout_alignRight="@+id/img_preview"
-        android:layout_alignTop="@+id/img_preview"/>
+        android:layout_alignRight="@+id/img_preview_ac"
+        android:layout_alignTop="@+id/img_preview_ac"/>
 
 </RelativeLayout>

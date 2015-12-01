@@ -25,7 +25,7 @@ import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
 import com.example.linhnh.myapplication.CustomView.MetaballMenu;
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.activity.MainActivity;
-import com.example.linhnh.myapplication.activity.PreviewFullScreenActivity;
+import com.example.linhnh.myapplication.activity.PreViewImageActivity;
 import com.example.linhnh.myapplication.adapter.DividerItemDecoration;
 import com.example.linhnh.myapplication.adapter.FilterAdapter;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
@@ -38,6 +38,7 @@ import com.example.linhnh.myapplication.util.ImagePickerHelper;
 import com.example.linhnh.myapplication.util.ListFilter;
 import com.example.linhnh.myapplication.util.UiUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import butterknife.InjectView;
@@ -191,31 +192,37 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
     @Override
     public void onItemClick(View view, int position) {
 //        imgFilter.setImageBitmap(ListFilter.get(path, position, mProgressDialog));
-        listFilter = new ListFilter(path, position, mProgressDialog,imgFilter);
+        listFilter = new ListFilter(path, position, mProgressDialog, imgFilter);
         listFilter.execute();
         Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
         pos = position;
     }
 
     public Bitmap previewImg;
+
     @OnClick(R.id.review_filter_img)
-    public void  imgFilter(){
+    public void imgFilter() {
 //        listFilter = new ListFilter(path, pos, mProgressDialog, imgReview);
 //        listFilter.execute();
-        Intent intent = new Intent(getActivity(), PreviewFullScreenActivity.class);
-        if(imgFilter.getDrawable() instanceof GlideBitmapDrawable) {
+        Intent intent = new Intent(getActivity(), PreViewImageActivity.class);
+        if (imgFilter.getDrawable() instanceof GlideBitmapDrawable) {
             GlideBitmapDrawable drawable = (GlideBitmapDrawable) imgFilter.getDrawable();
-             previewImg = drawable.getBitmap();
-        }else {
-            Drawable drawable   = imgFilter.getDrawable();
-             previewImg = ((BitmapDrawable)drawable).getBitmap();
+            previewImg = drawable.getBitmap();
+        } else {
+            Drawable drawable = imgFilter.getDrawable();
+            previewImg = ((BitmapDrawable) drawable).getBitmap();
         }
         // Immutable bitmap passed to Canvas constructor
-        Canvas canvas = new Canvas(previewImg);
-        Paint paintit = new Paint();
-        paintit.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.hope_green), PorterDuff.Mode.SCREEN));
-        canvas.drawBitmap(previewImg, 0, 0, paintit);
-        intent.putExtra(PreviewFullScreenActivity.PREVIEW_IMAGE, previewImg);
+//        Bitmap mutableBitmap = previewImg.copy(Bitmap.Config.ARGB_8888, true);
+//        Canvas canvas = new Canvas(mutableBitmap);
+//        Paint paintit = new Paint();
+//        paintit.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.hope_green), PorterDuff.Mode.SCREEN));
+//        canvas.drawBitmap(mutableBitmap, 0, 0, paintit);
+        // compress
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        previewImg.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] bytes = stream.toByteArray();
+        intent.putExtra(PreViewImageActivity.PREVIEW_IMAGE, bytes);
         startActivity(intent);
 
     }
