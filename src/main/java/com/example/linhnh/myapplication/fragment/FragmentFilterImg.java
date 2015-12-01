@@ -2,8 +2,12 @@ package com.example.linhnh.myapplication.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -206,9 +210,15 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
             Drawable drawable   = imgFilter.getDrawable();
              previewImg = ((BitmapDrawable)drawable).getBitmap();
         }
+        // Immutable bitmap passed to Canvas constructor
+        Canvas canvas = new Canvas(previewImg);
+        Paint paintit = new Paint();
+        paintit.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.hope_green), PorterDuff.Mode.SCREEN));
+        canvas.drawBitmap(previewImg, 0, 0, paintit);
         intent.putExtra(PreviewFullScreenActivity.PREVIEW_IMAGE, previewImg);
         startActivity(intent);
-    };
+
+    }
 
     /*
     *   Mutil touch

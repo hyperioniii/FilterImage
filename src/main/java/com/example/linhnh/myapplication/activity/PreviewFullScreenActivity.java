@@ -2,6 +2,10 @@ package com.example.linhnh.myapplication.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -27,13 +31,16 @@ public class PreviewFullScreenActivity extends BaseActivity {
 
     @InjectView(R.id.img_preview)
     ImageAutoScale imgPreview;
+    Paint paint = new Paint();
 
     @Override
     public void initData() {
 //        imgLink = getIntent().getStringExtra(PREVIEW_IMAGE);
-         imgLink = BitmapFactory.decodeByteArray(
-                getIntent().getByteArrayExtra(PREVIEW_IMAGE), 0, getIntent().getByteArrayExtra("byteArray").length);
+        DebugLog.d("---------- show image -------------------");
+//        imgLink = BitmapFactory.decodeByteArray(
+//                getIntent().getByteArrayExtra(PREVIEW_IMAGE), 0, getIntent().getByteArrayExtra("byteArray").length);
 
+         imgLink = getIntent().getExtras().getParcelable(PREVIEW_IMAGE);
         DebugLog.d("---------- show image -------------------");
         if (imgLink != null) {
 //            Glide.with(this).load(imgLink).into(new ImageViewTarget<GlideDrawable>(imgPreview) {
@@ -50,6 +57,7 @@ public class PreviewFullScreenActivity extends BaseActivity {
 //                    });
 //                }
 //            });
+            DebugLog.d("---------- show image -------------------");
             imgPreview.setImageBitmap(imgLink);
         } else {
             finish();
