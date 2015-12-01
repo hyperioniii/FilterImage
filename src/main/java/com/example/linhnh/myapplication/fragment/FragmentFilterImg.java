@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
 import com.example.linhnh.myapplication.CustomView.MetaballMenu;
 import com.example.linhnh.myapplication.R;
@@ -192,14 +193,20 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         pos = position;
     }
 
+    public Bitmap previewImg;
     @OnClick(R.id.review_filter_img)
     public void  imgFilter(){
 //        listFilter = new ListFilter(path, pos, mProgressDialog, imgReview);
 //        listFilter.execute();
         Intent intent = new Intent(getActivity(), PreviewFullScreenActivity.class);
-        Drawable drawable   = imgFilter.getDrawable();
-        Bitmap bitmap = ((BitmapDrawable)drawable).getBitmap();
-        intent.putExtra(PreviewFullScreenActivity.PREVIEW_IMAGE, bitmap);
+        if(imgFilter.getDrawable() instanceof GlideBitmapDrawable) {
+            GlideBitmapDrawable drawable = (GlideBitmapDrawable) imgFilter.getDrawable();
+             previewImg = drawable.getBitmap();
+        }else {
+            Drawable drawable   = imgFilter.getDrawable();
+             previewImg = ((BitmapDrawable)drawable).getBitmap();
+        }
+        intent.putExtra(PreviewFullScreenActivity.PREVIEW_IMAGE, previewImg);
         startActivity(intent);
     };
 

@@ -32,24 +32,25 @@ public class PreviewFullScreenActivity extends BaseActivity {
     public void initData() {
 //        imgLink = getIntent().getStringExtra(PREVIEW_IMAGE);
          imgLink = BitmapFactory.decodeByteArray(
-                getIntent().getByteArrayExtra("byteArray"), 0, getIntent().getByteArrayExtra("byteArray").length);
+                getIntent().getByteArrayExtra(PREVIEW_IMAGE), 0, getIntent().getByteArrayExtra("byteArray").length);
 
         DebugLog.d("---------- show image -------------------");
         if (imgLink != null) {
-            Glide.with(this).load(imgLink).into(new ImageViewTarget<GlideDrawable>(imgPreview) {
-                @Override
-                protected void setResource(GlideDrawable resource) {
-                    imgPreview.setImageDrawable(resource);
-                    photoViewAttacher = new PhotoViewAttacher(imgPreview);
-
-                    photoViewAttacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
-                        @Override
-                        public void onPhotoTap(View view, float v, float v1) {
-                            onCloseClick();
-                        }
-                    });
-                }
-            });
+//            Glide.with(this).load(imgLink).into(new ImageViewTarget<GlideDrawable>(imgPreview) {
+//                @Override
+//                protected void setResource(GlideDrawable resource) {
+//                    imgPreview.setImageDrawable(resource);
+//                    photoViewAttacher = new PhotoViewAttacher(imgPreview);
+//
+//                    photoViewAttacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+//                        @Override
+//                        public void onPhotoTap(View view, float v, float v1) {
+//                            onCloseClick();
+//                        }
+//                    });
+//                }
+//            });
+            imgPreview.setImageBitmap(imgLink);
         } else {
             finish();
         }
