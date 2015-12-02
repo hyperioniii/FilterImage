@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#80cccccc"
     android:id="@+id/layout_preview_background">
 
-    <com.example.linhnh.myapplication.CustomView.ImageAutoScale
+    <ImageView
         android:id="@+id/img_preview_ac"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:scaleType="fitXY"
-        app:heightPerWidth="1.5"/>
+        android:scaleType="centerCrop"
+        />
 
     <ImageView
         android:id="@+id/btn_close"

@@ -212,12 +212,6 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
             Drawable drawable = imgFilter.getDrawable();
             previewImg = ((BitmapDrawable) drawable).getBitmap();
         }
-        // Immutable bitmap passed to Canvas constructor
-//        Bitmap mutableBitmap = previewImg.copy(Bitmap.Config.ARGB_8888, true);
-//        Canvas canvas = new Canvas(mutableBitmap);
-//        Paint paintit = new Paint();
-//        paintit.setColorFilter(new PorterDuffColorFilter(getResources().getColor(R.color.hope_green), PorterDuff.Mode.SCREEN));
-//        canvas.drawBitmap(mutableBitmap, 0, 0, paintit);
         // compress
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         previewImg.compress(Bitmap.CompressFormat.PNG, 100, stream);

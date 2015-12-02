@@ -28,17 +28,13 @@ import java.util.List;
 /**
  * Created by LinhNguyen on 11/19/2015.
  */
-public class ListFilter extends  AsyncTask <String , Void , Bitmap>{
+public class ListFilter extends  AsyncTask <Void , Void , Bitmap>{
 
     String path;
     int pos;
     ProgressDialog mProgess;
     Bitmap bitmap;
     ImageView imView;
-
-    public Bitmap getBitmap() {
-        return bitmap;
-    }
 
     public ListFilter(String path, int pos, ProgressDialog mProgess,ImageView imView) {
         this.path = path;
@@ -54,7 +50,7 @@ public class ListFilter extends  AsyncTask <String , Void , Bitmap>{
     }
 
     @Override
-    protected Bitmap doInBackground(String... params) {
+    protected Bitmap doInBackground(Void... params) {
         DebugLog.d("-------------- "+path +"-----------------"+pos);
         setBitmap(path, pos, mProgess);
         return bitmap;
@@ -279,9 +275,9 @@ public class ListFilter extends  AsyncTask <String , Void , Bitmap>{
 
         DoGFilter filter = new DoGFilter();
         filter.setInvert(true);
-        filter.setNormalize(false);
+        filter.setNormalize(true);
         filter.setRadius1(getAmout(0));
-        filter.setRadius2(getAmout(162));
+        filter.setRadius2(getAmout(562));
         int[] src = AndroidUtils.drawableToIntArray(bitmap);
         src = filter.filter(src, width, height);
         bitmap_temp = Bitmap.createBitmap(src, width, height, Bitmap.Config.ARGB_8888);

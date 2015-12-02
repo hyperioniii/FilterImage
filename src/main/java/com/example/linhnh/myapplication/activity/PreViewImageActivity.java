@@ -10,6 +10,7 @@ import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
 import com.example.linhnh.myapplication.util.DebugLog;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * Created by LinhNH on 12/1/2015.
@@ -25,7 +26,7 @@ public class PreViewImageActivity extends BaseActivity {
     private Bitmap imgLink;
 
     @InjectView(R.id.img_preview_ac)
-    ImageAutoScale imgPreview;
+    ImageView imgPreview;
 
     @Override
     public void initView() {
@@ -39,6 +40,11 @@ public class PreViewImageActivity extends BaseActivity {
 //        imgLink = getIntent().getExtras().getParcelable(PREVIEW_IMAGE);
         DebugLog.d("---------- show image -------------------");
         imgPreview.setImageBitmap(imgLink);
+    }
+
+    @OnClick(R.id.btn_close)
+    public void closePreview(){
+        finish();
     }
 
     @SuppressWarnings("unused")
