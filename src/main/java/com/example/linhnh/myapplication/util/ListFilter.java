@@ -51,7 +51,7 @@ public class ListFilter extends  AsyncTask <Void , Void , Bitmap>{
 
     @Override
     protected Bitmap doInBackground(Void... params) {
-        DebugLog.d("-------------- "+path +"-----------------"+pos);
+        DebugLog.d("-------------- " + path + "-----------------" + pos);
         setBitmap(path, pos, mProgess);
         return bitmap;
     }
@@ -112,7 +112,8 @@ public class ListFilter extends  AsyncTask <Void , Void , Bitmap>{
                     bitmap = applyFilter_HSBAdjustFilter(bim);
                     break;
                 case 10:
-                    bitmap = applyFilter_DoGFilter(drawable);
+//                    bitmap = applyFilter_DoGFilter(drawable);
+                    bitmap = applyFilter_contrast(bim);
                     break;
                 case 11:
                     bitmap = applyFilter_contrast(bim);
@@ -273,14 +274,19 @@ public class ListFilter extends  AsyncTask <Void , Void , Bitmap>{
         final int width = bitmap.getIntrinsicWidth();
         final int height = bitmap.getIntrinsicHeight();
 
-        DoGFilter filter = new DoGFilter();
-        filter.setInvert(true);
-        filter.setNormalize(true);
-        filter.setRadius1(getAmout(0));
-        filter.setRadius2(getAmout(562));
+        GrayscaleFilter filter = new GrayscaleFilter();
+        DoGFilter filter2 = new DoGFilter();
+        filter2.setInvert(true);
+        filter2.setNormalize(true);
+        filter2.setRadius1(getAmout(0));
+        filter2.setRadius2(getAmout(562));
         int[] src = AndroidUtils.drawableToIntArray(bitmap);
         src = filter.filter(src, width, height);
+        src = filter2.filter(src,width,height);
+
         bitmap_temp = Bitmap.createBitmap(src, width, height, Bitmap.Config.ARGB_8888);
+
+
         return bitmap_temp;
     }
 
