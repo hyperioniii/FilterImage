@@ -26,7 +26,7 @@ public class PreViewImageActivity extends BaseActivity {
     private Bitmap imgLink;
 
     @InjectView(R.id.img_preview_ac)
-    ImageView imgPreview;
+    ImageAutoScale imgPreview;
 
     @Override
     public void initView() {

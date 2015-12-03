@@ -6,12 +6,13 @@
     android:background="#80cccccc"
     android:id="@+id/layout_preview_background">
 
-    <ImageView
+    <com.example.linhnh.myapplication.CustomView.ImageAutoScale
         android:id="@+id/img_preview_ac"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"
+        app:heightPerWidth="1.5"
         />
 
     <ImageView

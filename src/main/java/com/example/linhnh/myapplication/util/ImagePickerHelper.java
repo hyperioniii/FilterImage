@@ -14,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 
 
 import com.example.linhnh.myapplication.activity.BaseActivity;
+import com.example.linhnh.myapplication.activity.CroprerImage;
 import com.example.linhnh.myapplication.constant.AppConstant;
 import com.example.linhnh.myapplication.fragment.BaseFragment;
 
@@ -173,6 +174,7 @@ public class ImagePickerHelper {
                         } else {
                             if (onPickerSuccess != null) {
                                 onPickerSuccess.onFinish(uri);
+
                             }
                         }
                     }

@@ -50,4 +50,6 @@ dependencies {
     compile 'com.larswerkman:lobsterpicker:1.0.0'
     compile project(':progessbarindicator')
     compile 'com.github.chrisbanes.photoview:library:1.2.3'
+    compile 'com.edmodo:cropper:1.0.1'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 }

@@ -1,5 +1,6 @@
 package com.example.linhnh.myapplication.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -21,9 +22,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
+import com.edmodo.cropper.CropImageView;
 import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
 import com.example.linhnh.myapplication.CustomView.MetaballMenu;
 import com.example.linhnh.myapplication.R;
+import com.example.linhnh.myapplication.activity.CroprerImage;
 import com.example.linhnh.myapplication.activity.MainActivity;
 import com.example.linhnh.myapplication.activity.PreViewImageActivity;
 import com.example.linhnh.myapplication.adapter.DividerItemDecoration;
@@ -101,6 +104,11 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
 
         UiUtil.hideView(metaballMenu, true);
         metaballMenu.setMenuClickListener(this);
+        adapter = new FilterAdapter();
+        adapter.setOnRecyclerViewItemClick(this);
+        mRecyclerView.setAdapter(adapter);
+//        imgFilter.setOnTouchListener(onTouchListener);
+
         imagePickerHelper = new ImagePickerHelper(this, new ImagePickerHelper.OnPickerSuccess() {
             @Override
             public void onFinish(Uri uri) {
@@ -109,31 +117,51 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
                     return;
                 }
                 File imageFile = new File(path);
+                DebugLog.d("-----path img: ======================: " + path);
 
                 Glide.with(getActivity()).load("file://" + imageFile).into(imgFilter);
                 UiUtil.hideView(imgAdd, true);
                 UiUtil.showView(metaballMenu);
                 UiUtil.showView(imgFilter);
+
             }
         });
+    }
 
-        adapter = new FilterAdapter();
-        adapter.setOnRecyclerViewItemClick(this);
-        mRecyclerView.setAdapter(adapter);
+    private static final int GET_PIC_CROP = 3;
 
-//        imgFilter.setOnTouchListener(onTouchListener);
+    public void crop(String pathimg) {
+        Intent cropIntent = new Intent(getContext(), CroprerImage.class);
+        cropIntent.putExtra("RATIO_X", 5);
+        cropIntent.putExtra("RATIO_Y", 10);
+        cropIntent.putExtra("PATH_IMAGE_CROP", pathimg);
+
+        getActivity().startActivityForResult(cropIntent, GET_PIC_CROP);
 
     }
 
     @OnClick(R.id.img_main_add)
     public void choseImage() {
         imagePickerHelper.openImageIntent(ImagePickerHelper.NORMAL_TRIM_REQUEST_CODE);
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         imagePickerHelper.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == GET_PIC_CROP) {
+                String pathImg = data.getStringExtra("String_IMG_CROP");
+                File imageFile = new File(pathImg);
+                DebugLog.d("-----path img: ======================: " + path);
+
+                Glide.with(getActivity()).load("file://" + imageFile).into(imgFilter);
+                UiUtil.hideView(imgAdd, true);
+                UiUtil.showView(metaballMenu);
+                UiUtil.showView(imgFilter);
+            }
+        }
     }
 
 
@@ -187,7 +215,6 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         }
     }
 
-    public int pos = 10000;
 
     @Override
     public void onItemClick(View view, int position) {
@@ -195,7 +222,6 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
         listFilter = new ListFilter(path, position, mProgressDialog, imgFilter);
         listFilter.execute();
         Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
-        pos = position;
     }
 
     public Bitmap previewImg;
@@ -328,6 +354,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
     /**
      * Calculate the mid point of the first two fingers
      */
+
     private void midPoint(PointF point, MotionEvent event) {
         float x = event.getX(0) + event.getX(1);
         float y = event.getY(0) + event.getY(1);
