@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 /**
  * Created by LinhNguyen on 12/3/2015.
+ * call ondestroy() in view out of memor
  */
 public class Memory {
     public static  void unbindDrawable(View view) {

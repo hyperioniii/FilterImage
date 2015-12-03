@@ -30,7 +30,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.PreViewImageActivity"/>
-        <activity android:name=".activity.CroprerImage"/>
     </application>
 
 </manifest>

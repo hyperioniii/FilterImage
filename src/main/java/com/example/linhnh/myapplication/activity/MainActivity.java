@@ -7,14 +7,13 @@ import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
 import com.example.linhnh.myapplication.fragment.FragmentFilterImg;
-import com.example.linhnh.myapplication.fragment.FragmentListImage;
 import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.FragmentUtil;
 import com.example.linhnh.myapplication.util.UiUtil;
 
 import butterknife.InjectView;
 
-public class MainActivity extends BaseActivity implements OnHeaderIconClickListener ,FragmentManager.OnBackStackChangedListener{
+public class MainActivity extends BaseActivity implements OnHeaderIconClickListener,FragmentManager.OnBackStackChangedListener{
 
     @InjectView(R.id.toolbar)
     public CustomHeaderToolBar toolBar;

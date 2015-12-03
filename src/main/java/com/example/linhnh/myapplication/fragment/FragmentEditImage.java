@@ -1,6 +1,5 @@
 package com.example.linhnh.myapplication.fragment;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +10,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,9 +24,7 @@ import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.constant.HeaderIconOption;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
 import com.example.linhnh.myapplication.util.DebugLog;
-import com.example.linhnh.myapplication.util.FileUtils;
 import com.example.linhnh.myapplication.util.FragmentUtil;
-import com.example.linhnh.myapplication.util.ImagePickerHelper;
 import com.example.linhnh.myapplication.util.ListFilter;
 import com.example.linhnh.view.ProgessSlideIndicator;
 import com.larswerkman.lobsterpicker.OnColorListener;

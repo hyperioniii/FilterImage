@@ -221,44 +221,4 @@ public class FileUtils {
         return type;
     }
 
-    public static String saveIMG(Bitmap thePic){
-
-        File sdCardDirectory = new File(
-                Environment
-                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"DreamCamera");
-
-        if (!sdCardDirectory.exists()) {
-            if (!sdCardDirectory.mkdirs()) {
-                Log.d("MySnaps", "failed to create directory");
-
-            }
-        }
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
-                .format(new Date());
-        String nw = "IMG_" + timeStamp + ".jpeg";
-
-        File image = new File(sdCardDirectory, nw);
-
-        // Encode the file as a PNG image.
-        FileOutputStream outStream;
-        try {
-
-            outStream = new FileOutputStream(image);
-            // convert bitmap to file
-            thePic.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-
-                /* 100 to keep full quality of the image */
-
-            outStream.flush();
-            outStream.close();
-            return image.getPath();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }

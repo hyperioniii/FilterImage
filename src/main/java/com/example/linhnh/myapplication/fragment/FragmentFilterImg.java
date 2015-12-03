@@ -1,14 +1,9 @@
 package com.example.linhnh.myapplication.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.PointF;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -22,7 +17,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
-import com.edmodo.cropper.CropImageView;
 import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
 import com.example.linhnh.myapplication.CustomView.MetaballMenu;
 import com.example.linhnh.myapplication.R;
@@ -130,19 +124,9 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
 
     private static final int GET_PIC_CROP = 3;
 
-    public void crop(String pathimg) {
-        Intent cropIntent = new Intent(getContext(), CroprerImage.class);
-        cropIntent.putExtra("RATIO_X", 5);
-        cropIntent.putExtra("RATIO_Y", 10);
-        cropIntent.putExtra("PATH_IMAGE_CROP", pathimg);
-
-        getActivity().startActivityForResult(cropIntent, GET_PIC_CROP);
-
-    }
-
     @OnClick(R.id.img_main_add)
     public void choseImage() {
-        imagePickerHelper.openImageIntent(ImagePickerHelper.NORMAL_TRIM_REQUEST_CODE);
+        imagePickerHelper.openImageIntent(ImagePickerHelper.AVATAR_PICKER_REQUEST_CODE);
 
     }
 
@@ -150,18 +134,6 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         imagePickerHelper.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == GET_PIC_CROP) {
-                String pathImg = data.getStringExtra("String_IMG_CROP");
-                File imageFile = new File(pathImg);
-                DebugLog.d("-----path img: ======================: " + path);
-
-                Glide.with(getActivity()).load("file://" + imageFile).into(imgFilter);
-                UiUtil.hideView(imgAdd, true);
-                UiUtil.showView(metaballMenu);
-                UiUtil.showView(imgFilter);
-            }
-        }
     }
 
 
