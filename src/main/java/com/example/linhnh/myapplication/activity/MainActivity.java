@@ -6,6 +6,7 @@ import com.example.linhnh.myapplication.CustomView.CustomHeaderToolBar;
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
+import com.example.linhnh.myapplication.fragment.FragmentFilterCamera;
 import com.example.linhnh.myapplication.fragment.FragmentFilterImg;
 import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.FragmentUtil;
@@ -33,7 +34,7 @@ public class MainActivity extends BaseActivity implements OnHeaderIconClickListe
 
     @Override
     public void initData() {
-            FragmentUtil.replaceFragment(MainActivity.this, FragmentFilterImg.newIntance(), null);
+            FragmentUtil.replaceFragment(MainActivity.this, FragmentFilterCamera.newIntance(), null);
     }
 
     @SuppressWarnings("unused")

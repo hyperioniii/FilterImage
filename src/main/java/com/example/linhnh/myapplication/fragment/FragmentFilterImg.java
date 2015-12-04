@@ -20,7 +20,6 @@ import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
 import com.example.linhnh.myapplication.CustomView.MetaballMenu;
 import com.example.linhnh.myapplication.R;
-import com.example.linhnh.myapplication.activity.CroprerImage;
 import com.example.linhnh.myapplication.activity.MainActivity;
 import com.example.linhnh.myapplication.activity.PreViewImageActivity;
 import com.example.linhnh.myapplication.adapter.DividerItemDecoration;
