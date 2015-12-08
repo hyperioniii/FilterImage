@@ -2,6 +2,7 @@ package com.example.linhnh.myapplication;
 
 import android.app.Application;
 
+import com.example.linhnh.myapplication.camera.video.TextureMovieEncoder;
 import com.example.linhnh.myapplication.util.SharedPrefUtils;
 
 
@@ -22,6 +23,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sharedPreferences = new SharedPrefUtils(getApplicationContext());
+        TextureMovieEncoder.initialize(getApplicationContext());
     }
 
     public static SharedPrefUtils getSharedPreferences() {

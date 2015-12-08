@@ -10,11 +10,19 @@
 
     <ImageView
         android:id="@+id/picture_cam"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:background="@android:drawable/ic_menu_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <ImageView
+        android:id="@+id/cam_filter"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:drawable/ic_menu_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

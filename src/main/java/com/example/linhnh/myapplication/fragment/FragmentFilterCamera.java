@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.camera.CameraPreview;
+import com.example.linhnh.myapplication.camera.filter.FilterManager;
+import com.example.linhnh.myapplication.camera.video.TextureMovieEncoder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,6 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * Created by LinhNguyen on 12/4/2015.
@@ -25,7 +28,6 @@ import butterknife.InjectView;
  */
 public class FragmentFilterCamera extends BaseFragment {
     private static final String TAG = "CameraDemo";
-    Camera camera;
 
     @InjectView(R.id.camera_preview)
     CameraPreview preview;
@@ -33,6 +35,10 @@ public class FragmentFilterCamera extends BaseFragment {
     @InjectView(R.id.picture_cam)
     ImageView buttonClick;
 
+    @InjectView(R.id.cam_filter)
+    ImageView btnCamFilter;
+
+    private boolean mIsRecordEnabled;
     @Override
     protected int setLayoutId() {
         return R.layout.fragment_camera;
@@ -56,56 +62,39 @@ public class FragmentFilterCamera extends BaseFragment {
 
     @Override
     protected void initData() {
-        preview = new CameraPreview(getActivity());
+//        preview.setAspectRatio(3,4);
+
+        mIsRecordEnabled = TextureMovieEncoder.getInstance().isRecording();
+        updateRecordButton();
 
         buttonClick.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               preview.camera.takePicture(shutterCallback, rawCallback, jpegCallback);
             }
         });
 
     }
 
+    public void updateRecordButton() {
+    }
 
-    Camera.ShutterCallback shutterCallback = new Camera.ShutterCallback() {
-        public void onShutter() {
-            Log.d(TAG, "onShutter'd");
-        }
+    @OnClick(R.id.cam_filter)
+    public void btnCamFilter(){
+        preview.changeFilter(FilterManager.FilterType.ToneCurve);
     };
 
-    /** Handles data for raw picture */
-    Camera.PictureCallback rawCallback = new Camera.PictureCallback() {
-        public void onPictureTaken(byte[] data, Camera camera) {
-            Log.d(TAG, "onPictureTaken - raw");
-        }
-    };
+    @Override public void onResume() {
+        super.onResume();
+        preview.onResume();
+        updateRecordButton();
+    }
 
-    /** Handles data for jpeg picture */
-    Camera.PictureCallback jpegCallback = new Camera.PictureCallback() {
-        public void onPictureTaken(byte[] data, Camera camera) {
-            FileOutputStream outStream = null;
-            long time = 0;
-            try {
-                // write to local sandbox file system
-//                outStream = CameraDemo.this.openFileOutput(String.format("%d.jpg", System.currentTimeMillis()), 0);
-                // Or write to sdcard
-                time =  System.currentTimeMillis();
-                outStream = new FileOutputStream(String.format("/sdcard/%d.jpg",time));
-                outStream.write(data);
-                outStream.close();
-                Log.d(TAG, "onPictureTaken - wrote bytes: " + data.length);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
+    @Override public void onPause() {
+        preview.onPause();
+        super.onPause();
+    }
 
-
-
-            }
-            Log.d(TAG, "onPictureTaken - jpeg");
-        }
-    };
-
-
+    @Override public void onDestroy() {
+        preview.onDestroy();
+        super.onDestroy();
+    }
 }
