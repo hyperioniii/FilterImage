@@ -173,4 +173,5 @@ public class CameraRecordRenderer implements GLSurfaceView.Renderer {
     public void changeFilter(FilterManager.FilterType filterType) {
         mNewFilterType = filterType;
     }
+
 }

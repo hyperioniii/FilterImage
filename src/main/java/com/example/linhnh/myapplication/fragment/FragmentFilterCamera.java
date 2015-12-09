@@ -35,8 +35,6 @@ public class FragmentFilterCamera extends BaseFragment {
     @InjectView(R.id.picture_cam)
     ImageView buttonClick;
 
-    @InjectView(R.id.cam_filter)
-    ImageView btnCamFilter;
 
     private boolean mIsRecordEnabled;
     @Override
@@ -69,6 +67,7 @@ public class FragmentFilterCamera extends BaseFragment {
 
         buttonClick.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+//                preview.changeFilter(FilterManager.FilterType.Normal);
             }
         });
 

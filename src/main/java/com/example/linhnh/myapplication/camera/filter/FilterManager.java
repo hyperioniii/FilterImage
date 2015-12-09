@@ -3,10 +3,11 @@ package com.example.linhnh.myapplication.camera.filter;
 import android.content.Context;
 
 import com.example.linhnh.myapplication.R;
+import com.example.linhnh.myapplication.util.DebugLog;
 
 public class FilterManager {
 
-    private static int mCurveIndex;
+    private static int mCurveIndex =0;
     private static int[] mCurveArrays = new int[] {
             R.raw.cross_1, R.raw.cross_2, R.raw.cross_3, R.raw.cross_4, R.raw.cross_5,
             R.raw.cross_6, R.raw.cross_7, R.raw.cross_8, R.raw.cross_9, R.raw.cross_10,
@@ -19,7 +20,7 @@ public class FilterManager {
     public static IFilter getCameraFilter(FilterType filterType, Context context) {
         switch (filterType) {
             case Normal:
-            default:
+                default:
                 return new CameraFilter(context);
             case Blend:
                 return new CameraFilterBlend(context, R.drawable.mask);
@@ -30,6 +31,8 @@ public class FilterManager {
                 if (mCurveIndex > 10) {
                     mCurveIndex = 0;
                 }
+
+                DebugLog.d("mCurveIndex================"+mCurveIndex);
                 return new CameraFilterToneCurve(context,
                         context.getResources().openRawResource(mCurveArrays[mCurveIndex]));
         }
