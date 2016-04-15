@@ -1,23 +1,13 @@
 package com.example.linhnh.myapplication.fragment;
 
-import android.content.Intent;
-import android.hardware.Camera;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.camera.CameraPreview;
 import com.example.linhnh.myapplication.camera.filter.FilterManager;
 import com.example.linhnh.myapplication.camera.video.TextureMovieEncoder;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -53,21 +43,20 @@ public class FragmentFilterCamera extends BaseFragment {
     }
 
     public static FragmentFilterCamera newIntance() {
-        FragmentFilterCamera fm = new FragmentFilterCamera();
-        return fm;
+        return new FragmentFilterCamera();
     }
 
 
     @Override
     protected void initData() {
-//        preview.setAspectRatio(3,4);
+        preview.setAspectRatio(3,4);
 
         mIsRecordEnabled = TextureMovieEncoder.getInstance().isRecording();
         updateRecordButton();
 
         buttonClick.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                preview.changeFilter(FilterManager.FilterType.Normal);
+                preview.changeFilter(FilterManager.FilterType.Normal);
             }
         });
 

@@ -68,8 +68,7 @@ public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClick
     private ListFilter listFilter;
 
     public static FragmentFilterImg newIntance() {
-        FragmentFilterImg fm = new FragmentFilterImg();
-        return fm;
+        return new FragmentFilterImg();
     }
 
     @Override
