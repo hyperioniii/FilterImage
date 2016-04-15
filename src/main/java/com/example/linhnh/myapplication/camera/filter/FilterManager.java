@@ -38,6 +38,17 @@ public class FilterManager {
         }
     }
 
+    public static IFilter getCameraFilterCam(FilterType filterType, Context context) {
+        mCurveIndex++;
+        if (mCurveIndex > 10) {
+            mCurveIndex = 0;
+        }
+
+        DebugLog.d("mCurveIndex================"+mCurveIndex);
+        return new CameraFilterToneCurve(context,
+                context.getResources().openRawResource(mCurveArrays[mCurveIndex]));
+    }
+
     public enum FilterType {
         Normal, Blend, SoftLight, ToneCurve
     }

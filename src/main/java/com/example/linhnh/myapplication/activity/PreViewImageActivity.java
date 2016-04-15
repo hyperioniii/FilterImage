@@ -51,4 +51,10 @@ public class PreViewImageActivity extends BaseActivity {
     public void onEventMainThread(MainScreenSettingEvent event) {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        imgLink.recycle();
+    }
 }

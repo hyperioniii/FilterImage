@@ -45,7 +45,7 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         Matrix.setIdentityM(mSTMatrix, 0);
         mFullScreen =
-                new FullFrameRect(FilterManager.getCameraFilter(mCurrentFilterType, mContext));
+                new FullFrameRect(FilterManager.getCameraFilterCam(mCurrentFilterType, mContext));
         mTextureId = mFullScreen.createTexture();
         mSurfaceTexture = new SurfaceTexture(mTextureId);
     }
@@ -67,7 +67,7 @@ public class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
         mSurfaceTexture.updateTexImage();
 
         if (mNewFilterType != mCurrentFilterType) {
-            mFullScreen.changeProgram(FilterManager.getCameraFilter(mNewFilterType, mContext));
+            mFullScreen.changeProgram(FilterManager.getCameraFilterCam(mNewFilterType, mContext));
             mCurrentFilterType = mNewFilterType;
         }
 

@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 
 import com.example.linhnh.myapplication.camera.filter.FilterManager;
 import com.example.linhnh.myapplication.camera.video.EncoderConfig;
+import com.example.linhnh.myapplication.util.DebugLog;
 
 /**
  * Created by LinhNguyen on 12/4/2015.
@@ -33,7 +34,7 @@ public class CameraPreview extends AutoFitGLSurfaceView
     }
 
     private void init(Context context) {
-
+        DebugLog.i("CameraPreview");
         setEGLContextClientVersion(2);
 
         mHandlerThread = new HandlerThread("CameraHandlerThread");
@@ -60,16 +61,17 @@ public class CameraPreview extends AutoFitGLSurfaceView
     @Override
     public void onResume() {
         super.onResume();
+        DebugLog.i("onResume");
     }
 
     @Override
     public void onPause() {
+        DebugLog.i("onPause");
         mBackgroundHandler.removeCallbacksAndMessages(null);
         CameraController.getInstance().release();
         queueEvent(new Runnable() {
             @Override
             public void run() {
-                // 跨进程 清空 Renderer数据
                 mCameraRenderer.notifyPausing();
             }
         });
@@ -78,6 +80,7 @@ public class CameraPreview extends AutoFitGLSurfaceView
     }
 
     public void onDestroy() {
+        DebugLog.i("onDestroy");
         mBackgroundHandler.removeCallbacksAndMessages(null);
         if (!mHandlerThread.isInterrupted()) {
             try {

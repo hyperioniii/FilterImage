@@ -385,7 +385,7 @@ public class TextureMovieEncoder implements Runnable {
         mInputWindowSurface.makeCurrent();
 
         // Create new programs and such for the new context.
-        mFullScreen = new FullFrameRect(FilterManager.getCameraFilter(mCurrentFilterType, mContext));
+        mFullScreen = new FullFrameRect(FilterManager.getCameraFilterCam(mCurrentFilterType, mContext));
     }
 
     private void prepareEncoder(EGLContext sharedContext, int width, int height, int bitRate,
@@ -400,12 +400,12 @@ public class TextureMovieEncoder implements Runnable {
         mInputWindowSurface = new WindowSurface(mEglCore, mVideoEncoder.getInputSurface(), true);
         mInputWindowSurface.makeCurrent();
 
-        mFullScreen = new FullFrameRect(FilterManager.getCameraFilter(mCurrentFilterType, mContext));
+        mFullScreen = new FullFrameRect(FilterManager.getCameraFilterCam(mCurrentFilterType, mContext));
     }
 
     private void handleUpdateFilter(FilterManager.FilterType filterType) {
         if (mFullScreen != null && filterType != mCurrentFilterType) {
-            mFullScreen.changeProgram(FilterManager.getCameraFilter(filterType, mContext));
+            mFullScreen.changeProgram(FilterManager.getCameraFilterCam(filterType, mContext));
             mCurrentFilterType = filterType;
         }
     }

@@ -9,4 +9,5 @@ public class AppConstant {
     public static final String APP_PHOTO_FOLDER_NAME = "Photos";
     public static final int IMAGE_MAX_WIDTH = 720;
     public static final int IMAGE_MAX_HEIGHT = 1280;
+    public static final int REQUEST_CODE_CAMERA = 100;
 }
