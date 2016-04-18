@@ -105,7 +105,7 @@ public class CameraPreview extends AutoFitGLSurfaceView
         public static final int SETUP_CAMERA = 1001;
         public static final int CONFIGURE_CAMERA = 1002;
         public static final int START_CAMERA_PREVIEW = 1003;
-        //public static final int STOP_CAMERA_PREVIEW = 1004;
+        public static final int STOP_CAMERA_PREVIEW = 1004;
         private CommonHandlerListener listener;
 
         public CameraHandler(Looper looper, CommonHandlerListener listener) {
@@ -164,13 +164,13 @@ public class CameraPreview extends AutoFitGLSurfaceView
                 });
 
                 break;
-            //case CameraHandler.STOP_CAMERA_PREVIEW:
-            //    mBackgroundHandler.post(new Runnable() {
-            //        @Override public void run() {
-            //            CameraController.getInstance().stopCameraPreview();
-            //        }
-            //    });
-            //    break;
+            case CameraHandler.STOP_CAMERA_PREVIEW:
+                mBackgroundHandler.post(new Runnable() {
+                    @Override public void run() {
+                        CameraController.getInstance().stopCameraPreview();
+                    }
+                });
+                break;
 
             default:
                 break;

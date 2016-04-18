@@ -334,35 +334,36 @@ public class CameraController
     }
 
     //PictureCallback
-    //@Override public void onPictureTaken(byte[] data, Camera camera) {
-    //    mIsTakingPicture = false;
-    //    //try {
-    //    //    Camera.Parameters ps = camera.getParameters();
-    //    //    if (ps.getPictureFormat() == ImageFormat.JPEG) {
-    //    //        //CommonUtil.executeAsyncTask(new SquareBitmapTask(data, mCameraMirrored) {
-    //    //        //    @Override protected void onPostExecute(PublishBean newPost) {
-    //    //        //        super.onPostExecute(newPost);
-    //    //        //        mIsTakingPicture = false;
-    //    //        //        if (mPictureCallback != null) {
-    //    //        //            mPictureCallback.onPictureTaken(newPost);
-    //    //        //        }
-    //    //        //    }
-    //    //        //});
-    //    //    }
-    //    //} catch (Exception e) {
-    //    //    e.printStackTrace();
-    //    //}
-    //}
+//    @Override
+//    public void onPictureTaken(byte[] data, Camera camera) {
+//        mIsTakingPicture = false;
+//        try {
+//            Camera.Parameters ps = camera.getParameters();
+//            if (ps.getPictureFormat() == ImageFormat.JPEG) {
+//                CommonUtil.executeAsyncTask(new SquareBitmapTask(data, mCameraMirrored) {
+//                    @Override protected void onPostExecute(PublishBean newPost) {
+//                        super.onPostExecute(newPost);
+//                        mIsTakingPicture = false;
+//                        if (mPictureCallback != null) {
+//                            mPictureCallback.onPictureTaken(newPost);
+//                        }
+//                    }
+//                });
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    //public boolean onClickEvent(View v, MotionEvent event) {
-    //    if (mClickGestureDetector.onTouchEvent(event)) {
-    //        Log.e("onClickEvent", "onClickEvent 进入了 onSingleTapUp");
-    //        startTouchAutoFocus(v, event);
-    //        return true;
-    //    }
-    //
-    //    return false;
-    //}
+//    public boolean onClickEvent(View v, MotionEvent event) {
+//        if (mClickGestureDetector.onTouchEvent(event)) {
+//            Log.e("onClickEvent", "onClickEvent 进入了 onSingleTapUp");
+//            startTouchAutoFocus(v, event);
+//            return true;
+//        }
+//
+//        return false;
+//    }
 
     //////////////////// Getter & Setter ////////////////////
 

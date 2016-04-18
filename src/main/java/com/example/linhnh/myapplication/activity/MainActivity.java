@@ -7,7 +7,6 @@ import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
 import com.example.linhnh.myapplication.fragment.FragmentFilterCamera;
-import com.example.linhnh.myapplication.fragment.FragmentFilterImg;
 import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.FragmentUtil;
 import com.example.linhnh.myapplication.util.UiUtil;
