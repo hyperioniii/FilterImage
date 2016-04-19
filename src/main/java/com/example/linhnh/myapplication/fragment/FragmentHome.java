@@ -46,4 +46,9 @@ public class FragmentHome extends BaseFragment {
     public void clickGallery() {
         FragmentUtil.replaceFragment(getActivity(), FragmentFilterImg.newIntance(), null);
     }
+
+    @OnClick(R.id.fragment_home_draw_canvas)
+    public void clickCanvas() {
+        FragmentUtil.replaceFragment(getActivity(), FragmentCanvas.newIntance(), null);
+    }
 }
