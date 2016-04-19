@@ -5,25 +5,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.view.Display;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.example.linhnh.myapplication.filter.BlockFilter;
-import com.example.linhnh.myapplication.filter.ChannelMixFilter;
-import com.example.linhnh.myapplication.filter.ContrastFilter;
-import com.example.linhnh.myapplication.filter.DoGFilter;
-import com.example.linhnh.myapplication.filter.EdgeFilter;
-import com.example.linhnh.myapplication.filter.GlowFilter;
-import com.example.linhnh.myapplication.filter.GrayscaleFilter;
-import com.example.linhnh.myapplication.filter.HSBAdjustFilter;
-import com.example.linhnh.myapplication.filter.SharpenFilter;
-import com.example.linhnh.myapplication.filter.util.AndroidUtils;
+import com.example.linhnh.myapplication.Imagefilter.BlockFilter;
+import com.example.linhnh.myapplication.Imagefilter.ChannelMixFilter;
+import com.example.linhnh.myapplication.Imagefilter.ContrastFilter;
+import com.example.linhnh.myapplication.Imagefilter.DoGFilter;
+import com.example.linhnh.myapplication.Imagefilter.EdgeFilter;
+import com.example.linhnh.myapplication.Imagefilter.GlowFilter;
+import com.example.linhnh.myapplication.Imagefilter.GrayscaleFilter;
+import com.example.linhnh.myapplication.Imagefilter.SharpenFilter;
+import com.example.linhnh.myapplication.Imagefilter.util.AndroidUtils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by LinhNguyen on 11/19/2015.
