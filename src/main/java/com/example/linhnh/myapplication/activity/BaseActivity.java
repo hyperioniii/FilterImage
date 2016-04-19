@@ -34,7 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             handleDeepLinkData(intent.getData());
         }
         setContentView(setContentViewId());
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         EventBusHelper.register(this);
         isUnregistEventBus = false;
         initView();

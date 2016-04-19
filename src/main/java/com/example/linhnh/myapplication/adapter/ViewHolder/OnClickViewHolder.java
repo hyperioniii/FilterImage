@@ -20,7 +20,7 @@ public class OnClickViewHolder extends RecyclerView.ViewHolder implements View.O
 
     public OnClickViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.inject(this, itemView);
+        ButterKnife.bind(this, itemView);
         itemView.setOnClickListener(this);
     }
 

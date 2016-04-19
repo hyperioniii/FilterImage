@@ -2,14 +2,13 @@ package com.example.linhnh.myapplication.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.widget.ImageView;
 
 import com.example.linhnh.myapplication.CustomView.ImageAutoScale;
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
 import com.example.linhnh.myapplication.util.DebugLog;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -25,7 +24,7 @@ public class PreViewImageActivity extends BaseActivity {
 
     private Bitmap imgLink;
 
-    @InjectView(R.id.img_preview_ac)
+    @Bind(R.id.img_preview_ac)
     ImageAutoScale imgPreview;
 
     @Override

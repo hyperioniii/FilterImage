@@ -20,7 +20,7 @@ import com.example.linhnh.myapplication.constant.AppConstant;
 
 import java.io.File;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -30,10 +30,10 @@ import butterknife.OnClick;
 public class FragmentFilterCamera extends BaseFragment {
     private static final String TAG = "CameraDemo";
 
-    @InjectView(R.id.camera_preview)
+    @Bind(R.id.camera_preview)
     CameraPreview preview;
 
-    @InjectView(R.id.picture_cam)
+    @Bind(R.id.picture_cam)
     ImageView buttonClick;
 
     private boolean mIsRecordEnabled;

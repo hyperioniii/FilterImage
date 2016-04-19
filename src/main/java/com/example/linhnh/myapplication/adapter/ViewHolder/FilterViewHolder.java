@@ -6,10 +6,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.linhnh.myapplication.BaseApplication;
 import com.example.linhnh.myapplication.R;
-import com.example.linhnh.myapplication.activity.BaseActivity;
 import com.example.linhnh.myapplication.callback.OnRecyclerViewItemClick;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -30,7 +29,7 @@ public class FilterViewHolder extends OnClickViewHolder {
 
     public static int LAYOUT_FILTER_IMG = R.layout.item_filter_img ;
 
-    @InjectView(R.id.item_filter)
+    @Bind(R.id.item_filter)
     public ImageView ImgFilter;
 
 

@@ -22,7 +22,7 @@ import com.example.linhnh.myapplication.util.FragmentUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -30,15 +30,15 @@ import de.greenrobot.event.EventBus;
  */
 public class FragmentListImage extends BaseFragment {
 
-    @InjectView(R.id.list_event)
+    @Bind(R.id.list_event)
     CustomsRecycleViewHoriziontal mRecyclerView;
 
     List<CalenderEvent> data = new ArrayList<>();
 
-    @InjectView(R.id.swipe_refresh_list_img)
+    @Bind(R.id.swipe_refresh_list_img)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    @InjectView(R.id.fab)
+    @Bind(R.id.fab)
     FloatingActionButton fab;
 
     ListEventAdapter adapter;

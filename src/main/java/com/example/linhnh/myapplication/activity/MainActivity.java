@@ -6,16 +6,16 @@ import com.example.linhnh.myapplication.CustomView.CustomHeaderToolBar;
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.eventbus.MainScreenSettingEvent;
-import com.example.linhnh.myapplication.fragment.FragmentFilterCamera;
+import com.example.linhnh.myapplication.fragment.FragmentHome;
 import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.FragmentUtil;
 import com.example.linhnh.myapplication.util.UiUtil;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 
 public class MainActivity extends BaseActivity implements OnHeaderIconClickListener,FragmentManager.OnBackStackChangedListener{
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     public CustomHeaderToolBar toolBar;
 
     boolean isNextBackPopAllStack = false;
@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity implements OnHeaderIconClickListe
 
     @Override
     public void initData() {
-            FragmentUtil.replaceFragment(MainActivity.this, FragmentFilterCamera.newIntance(), null);
+            FragmentUtil.replaceFragment(MainActivity.this, FragmentHome.newIntance(), null);
     }
 
     @SuppressWarnings("unused")

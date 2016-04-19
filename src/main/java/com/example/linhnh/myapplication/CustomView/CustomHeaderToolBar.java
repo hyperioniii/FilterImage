@@ -6,14 +6,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.linhnh.myapplication.BaseApplication;
 import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.callback.OnHeaderIconClickListener;
 import com.example.linhnh.myapplication.constant.HeaderIconOption;
 import com.example.linhnh.myapplication.util.StringUtil;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 /**
@@ -21,21 +20,21 @@ import butterknife.OnClick;
  */
 public class CustomHeaderToolBar extends android.support.v7.widget.Toolbar{
 
-    @InjectView(R.id.toolbar_left_icon_back)
+    @Bind(R.id.toolbar_left_icon_back)
     ImageView imgLeftBack;
-    @InjectView(R.id.toolbar_left_icon_close)
+    @Bind(R.id.toolbar_left_icon_close)
     ImageView imgLeftClose;
-    @InjectView(R.id.toolbar_left_icon_setting)
+    @Bind(R.id.toolbar_left_icon_setting)
     ImageView imgLeftSetting;
 
-    @InjectView(R.id.toolbar_right_icon_close)
+    @Bind(R.id.toolbar_right_icon_close)
     ImageView imgRightClose;
-    @InjectView(R.id.toolbar_right_icon_edit)
+    @Bind(R.id.toolbar_right_icon_edit)
     ImageView imgRightEdit;
-    @InjectView(R.id.toolbar_right_icon_delete)
+    @Bind(R.id.toolbar_right_icon_delete)
     ImageView imgRightDelete;
 
-    @InjectView(R.id.toolbar_title)
+    @Bind(R.id.toolbar_title)
     TextView tvTitle;
 
 
@@ -62,7 +61,7 @@ public class CustomHeaderToolBar extends android.support.v7.widget.Toolbar{
 
     private void init() {
         inflate(getContext(), R.layout.customheadertoolbar, this); // your layout with <merge> as the root tag
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 
     public void setTvTitle(String title) {

@@ -8,16 +8,16 @@ import com.example.linhnh.myapplication.R;
 import com.example.linhnh.myapplication.model.CalenderEvent;
 import com.example.linhnh.myapplication.util.DebugLog;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 
 /**
  * Created by LinhNguyen on 11/4/2015.
  */
 public class ListEventViewHolder extends OnClickViewHolder {
 
-    @InjectView(R.id.img_item_img)
+    @Bind(R.id.img_item_img)
     ImageView imgEvent;
-    @InjectView(R.id.tv_item_content)
+    @Bind(R.id.tv_item_content)
     TextView tvContetnt;
 
     public ListEventViewHolder(View itemView) {

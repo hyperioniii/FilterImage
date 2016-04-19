@@ -39,7 +39,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
@@ -57,26 +57,26 @@ import de.greenrobot.event.EventBus;
  */
 public class FragmentEditImage extends BaseFragment implements OnHeaderIconClickListener {
 
-    @InjectView(R.id.opacityslider)
+    @Bind(R.id.opacityslider)
     LobsterOpacitySlider opacitySlider;
 
-    @InjectView(R.id.shadeslider)
+    @Bind(R.id.shadeslider)
     LobsterShadeSlider shadeSlider;
 
-    @InjectView(R.id.img_edit)
+    @Bind(R.id.img_edit)
     ImageView editImg;
 
-    @InjectView(R.id.fab_save)
+    @Bind(R.id.fab_save)
     FloatingActionButton fabSave;
 
-    @InjectView(R.id.progressIndicator)
+    @Bind(R.id.progressIndicator)
     ProgessSlideIndicator progressIndicator;
 
-    @InjectView(R.id.filter_R)
+    @Bind(R.id.filter_R)
     ImageView imgFilterR;
-    @InjectView(R.id.filter_B)
+    @Bind(R.id.filter_B)
     ImageView imgFilterB;
-    @InjectView(R.id.filter_G)
+    @Bind(R.id.filter_G)
     ImageView imgFilterG;
 
 

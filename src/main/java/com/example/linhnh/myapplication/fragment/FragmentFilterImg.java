@@ -37,7 +37,7 @@ import com.example.linhnh.myapplication.util.UiUtil;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
@@ -46,19 +46,19 @@ import de.greenrobot.event.EventBus;
  */
 public class FragmentFilterImg extends BaseFragment implements OnHeaderIconClickListener, MetaballMenu.MetaballMenuClickListener, OnRecyclerViewItemClick {
 
-//    @InjectView(R.id.review_filter_img)
+//    @Bind(R.id.review_filter_img)
 //    ImageView imgReview;
 
-    @InjectView(R.id.review_filter_img)
+    @Bind(R.id.review_filter_img)
     ImageView imgFilter;
 
-    @InjectView(R.id.line_demo_filter)
+    @Bind(R.id.line_demo_filter)
     RecyclerView mRecyclerView;
 
-    @InjectView(R.id.img_main_add)
+    @Bind(R.id.img_main_add)
     ImageAutoScale imgAdd;
 
-    @InjectView(R.id.metaball_menu)
+    @Bind(R.id.metaball_menu)
     MetaballMenu metaballMenu;
 
     FilterAdapter adapter;

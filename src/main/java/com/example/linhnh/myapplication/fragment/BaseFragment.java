@@ -1,18 +1,15 @@
 package com.example.linhnh.myapplication.fragment;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.linhnh.myapplication.R;
-import com.example.linhnh.myapplication.util.DebugLog;
 import com.example.linhnh.myapplication.util.KeyboardUtil;
 
 import butterknife.ButterKnife;
@@ -37,13 +34,13 @@ public abstract class BaseFragment extends Fragment {
     private View createRootView(LayoutInflater inflater, ViewGroup container) {
         if (isSkipGenerateBaseLayout()) {
             rootView = inflater.inflate(setLayoutId(), container, false);
-            ButterKnife.inject(this, rootView);
+            ButterKnife.bind(this, rootView);
         } else {
             rootView = inflater.inflate(R.layout.layout_base_fragment, container, false);
             fragmentViewParent = (ViewGroup) rootView.findViewById(R.id.fragmentViewParent);
 
             fragmentViewParent.addView(inflater.inflate(setLayoutId(), container, false));
-            ButterKnife.inject(this, rootView);
+            ButterKnife.bind(this, rootView);
         }
         return rootView;
     }
