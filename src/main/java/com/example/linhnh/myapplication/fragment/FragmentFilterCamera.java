@@ -60,7 +60,7 @@ public class FragmentFilterCamera extends BaseFragment {
 
     @Override
     protected void initData() {
-        preview.setAspectRatio(4, 4);
+        preview.setAspectRatio(3, 4);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
