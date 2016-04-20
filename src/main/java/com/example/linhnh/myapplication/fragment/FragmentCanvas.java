@@ -17,6 +17,7 @@ public class FragmentCanvas extends BaseFragment {
     @Bind(R.id.layout_canvass)
     public RelativeLayout parent;
 
+    @Bind(R.id.draw_view)
     MyDrawView myDrawView;
 
     public static FragmentCanvas newIntance() {
@@ -40,8 +41,11 @@ public class FragmentCanvas extends BaseFragment {
 
     @Override
     protected void initData() {
-        myDrawView = new MyDrawView(getActivity());
-        parent.addView(myDrawView);
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

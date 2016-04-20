@@ -3,6 +3,12 @@
     android:id="@+id/layout_canvass"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/base_gray"
     android:orientation="vertical">
+
+    <com.example.linhnh.myapplication.drawView.MyDrawView
+        android:id="@+id/draw_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

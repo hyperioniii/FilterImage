@@ -39,16 +39,21 @@ public class FragmentHome extends BaseFragment {
 
     @OnClick(R.id.fragment_home_capture)
     public void clickCapture() {
-        FragmentUtil.replaceFragment(getActivity(), FragmentFilterCamera.newIntance(), null);
+        FragmentUtil.pushFragment(getActivity(), FragmentFilterCamera.newIntance(), null);
     }
 
     @OnClick(R.id.fragment_home_gallery)
     public void clickGallery() {
-        FragmentUtil.replaceFragment(getActivity(), FragmentFilterImg.newIntance(), null);
+        FragmentUtil.pushFragment(getActivity(), FragmentFilterImg.newIntance(), null);
     }
 
     @OnClick(R.id.fragment_home_draw_canvas)
     public void clickCanvas() {
-        FragmentUtil.replaceFragment(getActivity(), FragmentCanvas.newIntance(), null);
+        FragmentUtil.pushFragment(getActivity(), FragmentCanvas.newIntance(), null);
+    }
+
+    @OnClick(R.id.fragment_home_cut_imge)
+    public void clickCUT() {
+        FragmentUtil.pushFragment(getActivity(), FragmentProcessImage.newIntance(), null);
     }
 }

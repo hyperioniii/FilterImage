@@ -1,87 +1,78 @@
 package com.example.linhnh.myapplication.drawView;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.AttributeSet;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.linhnh.myapplication.util.DebugLog;
+import java.util.ArrayList;
 
 /**
  * Created by LinhNguyen on 4/19/2016.
  */
-public class MyDrawView extends View {
+public class MyDrawView extends View implements View.OnTouchListener {
 
-    private Bitmap mBitmap;
-    private Canvas mCanvas;
-    private Path mPath;
-    private Paint mBitmapPaint;
-    private Paint mPaint;
+    private Canvas m_Canvas;
 
-    public MyDrawView(Context c) {
-        super(c);
+    private Path m_Path;
 
-        mPath = new Path();
-        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+    private Paint m_Paint;
 
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setDither(true);
-        mPaint.setColor(0xFF3300);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeWidth(3);
+    private ArrayList<Pair<Path, Paint>> paths = new ArrayList<Pair<Path, Paint>>();
+
+    private ArrayList<Pair<Path, Paint>> undonePaths = new ArrayList<Pair<Path, Paint>>();
+
+    private float mX, mY;
+
+    private static final float TOUCH_TOLERANCE = 4;
+
+    private boolean isEraserActive = false;
+
+    public MyDrawView(Context context, AttributeSet attr) {
+        super(context, attr);
+
+        setFocusable(true);
+
+        setFocusableInTouchMode(true);
+
+        setBackgroundColor(Color.WHITE);
+
+        this.setOnTouchListener(this);
+
+        onCanvasInitialization();
+    }
+
+    public void onCanvasInitialization() {
+
+        m_Paint = new Paint();
+        m_Paint.setAntiAlias(true);
+        m_Paint.setDither(true);
+        m_Paint.setColor(Color.parseColor("#000000"));
+        m_Paint.setStyle(Paint.Style.STROKE);
+        m_Paint.setStrokeJoin(Paint.Join.ROUND);
+        m_Paint.setStrokeCap(Paint.Cap.ROUND);
+        m_Paint.setStrokeWidth(2);
+
+        m_Canvas = new Canvas();
+
+
+        m_Path = new Path();
+        Paint newPaint = new Paint(m_Paint);
+        paths.add(new Pair<Path, Paint>(m_Path, newPaint));
+
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(mBitmap);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
-
-        canvas.drawPath(mPath, mPaint);
-    }
-
-    private float mX, mY;
-    private static final float TOUCH_TOLERANCE = 4;
-
-    private void touch_start(float x, float y) {
-        mPath.reset();
-        mPath.moveTo(x, y);
-        mX = x;
-        mY = y;
-    }
-
-    private void touch_move(float x, float y) {
-        float dx = Math.abs(x - mX);
-        float dy = Math.abs(y - mY);
-        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-            mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
-            mX = x;
-            mY = y;
-        }
-    }
-
-    private void touch_up() {
-        mPath.lineTo(mX, mY);
-        // commit the path to our offscreen
-        mCanvas.drawPath(mPath, mPaint);
-        // kill this so we don't double draw
-        mPath.reset();
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouch(View arg0, MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
 
@@ -91,7 +82,6 @@ public class MyDrawView extends View {
                 invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
-                DebugLog.e("-------------------"+x+"---"+y);
                 touch_move(x, y);
                 invalidate();
                 break;
@@ -103,10 +93,112 @@ public class MyDrawView extends View {
         return true;
     }
 
-    public void clear() {
-        mBitmap.eraseColor(Color.TRANSPARENT);
-        invalidate();
-        System.gc();
+    @Override
+    protected void onDraw(Canvas canvas) {
+        for (Pair<Path, Paint> p : paths) {
+            canvas.drawPath(p.first, p.second);
+        }
     }
+
+    private void touch_start(float x, float y) {
+
+        if (isEraserActive) {
+            m_Paint.setColor(Color.WHITE);
+            m_Paint.setStrokeWidth(10);
+            Paint newPaint = new Paint(m_Paint); // Clones the mPaint object
+            paths.add(new Pair<Path, Paint>(m_Path, newPaint));
+
+        } else {
+            m_Paint.setColor(Color.BLACK);
+            m_Paint.setStrokeWidth(2);
+            Paint newPaint = new Paint(m_Paint); // Clones the mPaint object
+            paths.add(new Pair<Path, Paint>(m_Path, newPaint));
+
+        }
+
+
+        m_Path.reset();
+        m_Path.moveTo(x, y);
+        mX = x;
+        mY = y;
+    }
+
+    private void touch_move(float x, float y) {
+        float dx = Math.abs(x - mX);
+        float dy = Math.abs(y - mY);
+        if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
+            m_Path.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
+            mX = x;
+            mY = y;
+        }
+    }
+
+    private void touch_up() {
+        m_Path.lineTo(mX, mY);
+
+        // commit the path to our offscreen
+        m_Canvas.drawPath(m_Path, m_Paint);
+
+        // kill this so we don't double draw
+        m_Path = new Path();
+        Paint newPaint = new Paint(m_Paint); // Clones the mPaint object
+        paths.add(new Pair<Path, Paint>(m_Path, newPaint));
+    }
+
+    public void activateEraser() {
+        isEraserActive = true;
+    }
+
+
+    public void deactivateEraser() {
+        isEraserActive = false;
+    }
+
+    public boolean isEraserActive() {
+        return isEraserActive;
+    }
+
+
+    public void reset() {
+        paths.clear();
+
+        invalidate();
+    }
+
+//	public void onClickPenColorButton(int penColor) {
+//
+//		if (isEraserActive) {
+//			m_Paint.setColor(Color.WHITE);
+//			Paint newPaint = new Paint(m_Paint); // Clones the mPaint object
+//			paths.add(new Pair<Path, Paint>(m_Path, newPaint));
+//
+//			isEraserActive = false;
+//		} else {
+//			m_Paint.setColor(Color.RED);
+//			Paint newPaint = new Paint(m_Paint); // Clones the mPaint object
+//			paths.add(new Pair<Path, Paint>(m_Path, newPaint));
+//
+//			isEraserActive = true;
+//		}
+//
+//	}
+//
+//	public void onClickUndo() {
+//		if (paths.size() > 0) {
+//			undonePaths.add(paths.remove(paths.size() - 1));
+//			invalidate();
+//		} else {
+//
+//		}
+//	}
+//
+//	public void onClickRedo() {
+//		if (undonePaths.size() > 0) {
+//			paths.add(undonePaths.remove(undonePaths.size() - 1));
+//			invalidate();
+//		} else {
+//
+//		}
+//	}
 }
 

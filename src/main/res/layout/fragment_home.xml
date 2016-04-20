@@ -41,4 +41,16 @@
         android:textColor="@color/old_blue_2"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/fragment_home_cut_imge"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border_home_while"
+        android:gravity="center"
+        android:text="Cut IMG"
+        android:textColor="@color/old_blue_2"
+        android:textSize="18sp" />
+
 </LinearLayout>
